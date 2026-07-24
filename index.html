@@ -4,12 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ÍBERA Systems — TERCIO</title>
-  <meta name="description" content="TERCIO is a TRL 2 passive-first modular survivability architecture for the dismounted tactical edge. No prototype. Seeking a French–Ukrainian co-development and test pathway.">
+  <meta name="description" content="TERCIO is a TRL 2 passive-first modular survivability architecture for the dismounted tactical edge. No prototype. Seeking French–Ukrainian co-development and evidence pathways.">
   <meta name="theme-color" content="#081119">
   <meta property="og:title" content="ÍBERA Systems — TERCIO">
   <meta property="og:description" content="Passive-first counter-UAS survivability for the dismounted tactical edge.">
   <meta property="og:type" content="website">
-  <link rel="icon" href="assets/ibera-logo.png">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="assets/ibera-logo.png" type="image/png">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="hero-v2.css">
 </head>
@@ -25,7 +26,7 @@
     <nav id="primary-nav" aria-label="Primary navigation">
       <a href="#gap">The gap</a>
       <a href="#tercio">TERCIO</a>
-      <a href="#phase-a">Phase A</a>
+      <a href="#demonstrators">Demonstrators</a>
       <a href="#partners">Partners</a>
       <a class="nav-cta" href="mailto:franciscoj_fernandez@icloud.com?subject=TERCIO%20triage%20call">Start a conversation</a>
     </nav>
@@ -51,7 +52,7 @@
         <div class="hero-system" aria-label="Conceptual TERCIO system architecture">
           <svg class="hero-monogram" viewBox="0 0 520 640" role="img" aria-labelledby="hero-diagram-title hero-diagram-desc">
             <title id="hero-diagram-title">ÍBERA monogram with TERCIO system layers</title>
-            <desc id="hero-diagram-desc">A fortified I monogram connected to five standalone capability nodes, representing the modular TERCIO architecture.</desc>
+            <desc id="hero-diagram-desc">A fortified I monogram connected to five standalone capability nodes arranged from Layer 0 at the base to Layer 4 at the top.</desc>
             <defs>
               <linearGradient id="towerFade" x1="0" x2="1">
                 <stop offset="0%" stop-color="#d7e1e7" stop-opacity="0.92"/>
@@ -93,11 +94,11 @@
             </g>
 
             <g class="layer-labels" font-family="Sora, Arial, sans-serif" font-size="13" letter-spacing="2">
-              <text x="449" y="123">L0</text>
-              <text x="449" y="221">L1</text>
+              <text x="449" y="123">L4</text>
+              <text x="449" y="221">L3</text>
               <text x="449" y="319">L2</text>
-              <text x="449" y="417">L3</text>
-              <text x="449" y="515">L4</text>
+              <text x="449" y="417">L1</text>
+              <text x="449" y="515">L0</text>
             </g>
 
             <path class="copper-accent" d="M110 586H470"/>
@@ -135,7 +136,7 @@
       </div>
       <div class="container layers-grid">
         <article class="layer-card"><span class="layer-index">L0</span><h3>URCE</h3><p>Human-worn passive signature conditioning intended to disrupt stable thermal contour at source.</p><b>CONDITION</b></article>
-        <article class="layer-card priority"><span class="layer-index">L1</span><h3>GADIR</h3><p>Always-on, non-powered position concealment and residual-effect mitigation. GADIR-TB is the first demonstrator.</p><b>CONCEAL</b></article>
+        <article class="layer-card priority"><span class="layer-index">L1</span><h3>GADIR</h3><p>Always-on, non-powered position concealment and residual-effect mitigation.</p><b>CONCEAL</b></article>
         <article class="layer-card"><span class="layer-index">L2</span><h3>ATALA</h3><p>Local and cooperative early warning using complementary sensing, with useful local behaviour if disconnected.</p><b>DETECT</b></article>
         <article class="layer-card"><span class="layer-index">L3</span><h3>ALANO</h3><p>Attritable forward or remote nodes intended to extend sensing and cueing geometry around obstacles and dead ground.</p><b>EXTEND</b></article>
         <article class="layer-card"><span class="layer-index">L4</span><h3>ARDID</h3><p>Cue-driven deception and perception shaping intended to create ambiguity and divert attention.</p><b>DECEIVE</b></article>
@@ -143,26 +144,55 @@
       <div class="container concept-label">ARCHITECTURE CONCEPT — NOT TEST EVIDENCE</div>
     </section>
 
-    <section class="light-section" id="phase-a">
-      <div class="container two-col phase-grid">
+    <section class="light-section demonstrators-section" id="demonstrators">
+      <div class="container demonstrators-head">
         <div>
-          <p class="section-number">03 / PHASE A</p>
-          <h2>Start narrow.<br><em>Measure honestly.</em></h2>
-          <p>GADIR-TB is the only committed demonstrator in TERCIO v1.0. It is a test article, not a finished product or field-ready solution.</p>
+          <p class="section-number">03 / DEMONSTRATOR PATHWAYS</p>
+          <h2>Start with the strongest question.<br><em>Not with the largest system.</em></h2>
         </div>
-        <aside class="question-card">
-          <span>TEST QUESTION</span>
-          <p>Can a low-cost, non-powered, deployable screen measurably reduce or destabilize apparent LWIR contrast without unacceptable visual, convective, safety or usability penalties?</p>
-        </aside>
+        <div>
+          <p>TERCIO is not locked to one demonstrator. Each capability can become a bounded MVP when a credible partner, test question, safety envelope and evidence route exist.</p>
+          <p>GADIR-TB remains the current lead candidate because it offers a low-complexity, non-powered route to first evidence. It is a priority, not an exclusivity rule.</p>
+        </div>
       </div>
-      <div class="container deliverables">
-        <div><strong>D1</strong><p>Candidate material and air-gap configurations with a repeatable uncovered reference.</p></div>
-        <div><strong>D2</strong><p>Controlled LWIR protocol covering steady state, transients and representative view angles.</p></div>
-        <div><strong>D3</strong><p>Raw imagery, ambient conditions, setup geometry and comparative analysis.</p></div>
-        <div><strong>D4</strong><p>Usability and risk observations: visual/NIR cueing, wind, moisture, heat, abrasion and flame response.</p></div>
-        <div><strong>D5</strong><p>A clear proceed, pivot or stop decision.</p></div>
+
+      <div class="container mvp-grid">
+        <article class="mvp-card">
+          <span>L0 / URCE</span>
+          <h3>Human-signature conditioning coupons</h3>
+          <p>Candidate textile structures tested against baseline garments for contour stability, thermal burden, comfort and durability.</p>
+          <small>ENTRY CONDITION: qualified textile/material partner and human-factors plan.</small>
+        </article>
+        <article class="mvp-card lead">
+          <span>L1 / GADIR</span>
+          <h3>GADIR-TB position screen</h3>
+          <p>Passive material and standoff configurations measured against uncovered and baseline-camouflage controls.</p>
+          <small>CURRENT LEAD PATH: materials partner + LWIR test access.</small>
+        </article>
+        <article class="mvp-card">
+          <span>L2 / ATALA</span>
+          <h3>Local warning breadboard</h3>
+          <p>A tightly scoped sensing and alerting experiment focused on one threat set, local utility and nuisance burden.</p>
+          <small>ENTRY CONDITION: user-defined threat set and sensor/BOM trade.</small>
+        </article>
+        <article class="mvp-card">
+          <span>L3 / ALANO</span>
+          <h3>Forward geometry node</h3>
+          <p>An attritable sensing or relay node used to test incremental geometry, link reliability, signature and loss tolerance.</p>
+          <small>ENTRY CONDITION: stable ATALA interface and deployment concept.</small>
+        </article>
+        <article class="mvp-card">
+          <span>L4 / ARDID</span>
+          <h3>Controlled deception experiment</h3>
+          <p>A supervised non-kinetic trial examining ambiguity, alternate aim points and operator or algorithm behaviour.</p>
+          <small>ENTRY CONDITION: approved test authority, safety review and cueing source.</small>
+        </article>
       </div>
-      <div class="container maturity-note">Success may establish TRL 3 for the demonstrated critical function — not for the full TERCIO architecture.</div>
+
+      <div class="container pathway-rule">
+        <strong>Selection rule</strong>
+        <p>The next MVP is chosen by partner capability, operational relevance, testability, safety and evidence value — not by a fixed public roadmap.</p>
+      </div>
     </section>
 
     <section class="evidence-section dark-section">
@@ -172,7 +202,7 @@
           <h2>Evidence first.<br><em>No theatre.</em></h2>
           <p>TERCIO is not combat-proven, fielded, manufactured or validated. No detection range, warning time, thermal-contrast reduction, casualty reduction or unit-cost figure is claimed.</p>
         </div>
-        <aside class="status-card"><span>CURRENT STATUS</span><h3>TRL 2 architecture study</h3><p>TERCIO complements — not replaces — air defence, vehicle-mounted C-UAS, electronic warfare and unit tactics.</p></aside>
+        <aside class="status-card"><span>CURRENT STATUS</span><h3>TRL 2 architecture study</h3><p>Any successful MVP would mature only the demonstrated critical function. The integrated TERCIO architecture would remain at TRL 2 until system-level evidence exists.</p></aside>
       </div>
     </section>
 
@@ -194,15 +224,15 @@
         <div>
           <p class="section-number">06 / PARTNER WITH US</p>
           <span class="micro-label">CURRENT ASK</span>
-          <h2>Build the evidence.<br>Shape the pathway.</h2>
-          <p>We are seeking a qualified French–Ukrainian development lead or consortium able to convert one tightly scoped demonstrator into credible evidence and a viable route to Ukrainian-led validation and production.</p>
+          <h2>Bring the right capability.<br>Define the right MVP.</h2>
+          <p>We are seeking qualified French–Ukrainian partners able to convert one bounded TERCIO hypothesis into credible evidence and a viable route to Ukrainian-led validation and production.</p>
           <a class="button primary" href="mailto:franciscoj_fernandez@icloud.com?subject=TERCIO%20%E2%80%94%2020-minute%20triage%20call">Request a 20-minute triage call</a>
         </div>
         <div class="needs-grid">
-          <div><span>01</span><h3>Materials & structures</h3><p>Textile, coated-material or deployable-structure engineering.</p></div>
-          <div><span>02</span><h3>LWIR test access</h3><p>Credible test design, instrumentation and evidence.</p></div>
-          <div><span>03</span><h3>Ukrainian insight</h3><p>Operational advice, manufacturing feedback and adoption pathway.</p></div>
-          <div><span>04</span><h3>French pathway</h3><p>Legal applicant and AID / BRAVE France eligibility route.</p></div>
+          <div><span>01</span><h3>Materials & structures</h3><p>Textiles, coatings, deployable structures and repairable field assemblies.</p></div>
+          <div><span>02</span><h3>Sensing & test</h3><p>LWIR, acoustic, RF, EO or mixed-sensor test design and instrumentation.</p></div>
+          <div><span>03</span><h3>Ukrainian insight</h3><p>Operational advice, manufacturing feedback and legitimate adoption pathway.</p></div>
+          <div><span>04</span><h3>Programme pathway</h3><p>French legal applicant, AID / BRAVE France route or qualified Ukrainian BRAVE1 partner.</p></div>
         </div>
       </div>
     </section>
