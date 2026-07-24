@@ -1,0 +1,37 @@
+:root{--midnight:#081119;--technical-teal:#20aeb0;--cool-white:#e8eef2}
+
+/* Engineering-led institutional hero */
+.hero{min-height:calc(100vh - 71px);position:relative;display:flex;align-items:center;overflow:hidden;background:var(--midnight);color:#fff;isolation:isolate}
+.hero:after{content:none}
+.hero-technical-grid{position:absolute;inset:0;z-index:-2;opacity:.32;background-image:linear-gradient(rgba(32,174,176,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(32,174,176,.055) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(90deg,transparent 0%,#000 48%,#000 100%)}
+.hero-technical-grid:before{content:"";position:absolute;width:700px;height:700px;right:-180px;top:-120px;border:1px solid rgba(32,174,176,.12);border-radius:50%;box-shadow:0 0 0 110px rgba(32,174,176,.025),0 0 0 220px rgba(32,174,176,.018)}
+.hero-layout{position:relative;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(360px,.75fr);gap:clamp(36px,6vw,100px);align-items:center;padding:clamp(90px,11vh,140px) 0 clamp(70px,9vh,110px)}
+.hero-content{position:relative;z-index:2;padding:0;max-width:760px}
+.hero h1{font-size:clamp(4.4rem,7.8vw,8rem);max-width:780px;letter-spacing:-.035em}
+.hero-copy{max-width:660px;color:#b9c7d0}
+.hero-system{position:relative;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 0}
+.hero-system:before{content:"SYSTEM ARCHITECTURE / CONCEPT";position:absolute;top:10%;right:-2.2rem;transform:rotate(90deg);transform-origin:right top;font-size:.58rem;letter-spacing:.22em;color:rgba(120,221,221,.58);white-space:nowrap}
+.hero-monogram{width:min(100%,510px);max-height:650px;filter:drop-shadow(0 24px 60px rgba(0,0,0,.38))}
+.system-lines{stroke-dasharray:3 8}
+.system-nodes circle{fill:#081119;stroke:#20aeb0;stroke-width:3}
+.layer-labels{fill:#7edddd}
+.copper-accent{fill:none;stroke:#b87333;stroke-width:5}
+.hero-diagram-note{width:min(100%,430px);margin:-12px 0 0;padding-top:18px;border-top:1px solid rgba(184,115,51,.62);font-size:.67rem;line-height:1.7;letter-spacing:.16em;text-transform:uppercase;color:#8398a5;text-align:right}
+
+@media(max-width:900px){
+  .hero-layout{grid-template-columns:1fr;gap:16px;padding-top:95px}
+  .hero-content{max-width:760px}
+  .hero-system{width:min(72vw,470px);justify-self:end;margin-top:-30px;opacity:.72}
+  .hero-system:before{display:none}
+  .hero-monogram{max-height:430px}
+  .hero-diagram-note{display:none}
+}
+
+@media(max-width:580px){
+  .hero{min-height:auto}
+  .hero-layout{padding:90px 0 58px}
+  .hero h1{font-size:clamp(3.55rem,17vw,5.4rem)}
+  .hero-system{width:82vw;justify-self:center;margin-top:-18px;opacity:.54}
+  .hero-monogram{max-height:340px}
+  .hero-technical-grid{opacity:.2}
+}
