@@ -1,1 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="ÍBERA Systems monogram"><rect width="64" height="64" rx="8" fill="#081119"/><g fill="#e8eef2"><rect x="15" y="10" width="34" height="7"/><rect x="15" y="4" width="8" height="13"/><rect x="28" y="4" width="8" height="13"/><rect x="41" y="4" width="8" height="13"/><rect x="25" y="17" width="14" height="31"/><rect x="15" y="48" width="34" height="7"/><rect x="19" y="55" width="26" height="5"/></g><rect x="13" y="61" width="38" height="2" fill="#b87333"/></svg>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 400" role="img" aria-label="ÍBERA Systems fortified I monogram">
+  <title>ÍBERA Systems favicon</title>
+  <path d="M50,70 L50,35 L85,35 L85,55 L105,55 L105,35 L135,35 L135,55 L155,55 L155,35 L190,35 L190,70 L155,70 L155,85 L150,85 L150,315 L165,315 L165,330 L185,330 L185,365 L55,365 L55,330 L75,330 L75,315 L90,315 L90,85 L85,85 L85,70 Z" fill="#2D2D2D" fill-rule="evenodd"/>
+</svg>
