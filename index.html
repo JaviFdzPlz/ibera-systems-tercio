@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ÍBERA Systems — TERCIO</title>
   <meta name="description" content="TERCIO is a TRL 2 passive-first modular survivability architecture for the dismounted tactical edge. No prototype. Seeking a French–Ukrainian co-development and test pathway.">
-  <meta name="theme-color" content="#071f31">
+  <meta name="theme-color" content="#081119">
   <meta property="og:title" content="ÍBERA Systems — TERCIO">
   <meta property="og:description" content="Passive-first counter-UAS survivability for the dismounted tactical edge.">
   <meta property="og:type" content="website">
   <link rel="icon" href="assets/ibera-logo.png">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="hero-v2.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -32,20 +33,78 @@
 
   <main id="main">
     <section class="hero">
-      <div class="hero-grid" aria-hidden="true"></div>
-      <div class="container hero-content">
-        <p class="eyebrow">ÍBERA SYSTEMS / TERCIO</p>
-        <h1>Break the chain.<br><em>Before it closes.</em></h1>
-        <p class="hero-copy">A passive-first, modular survivability architecture for dismounted teams facing thermal ISR, FPV and fibre-optic FPV pressure.</p>
-        <div class="button-row">
-          <a class="button primary" href="#tercio">Explore TERCIO</a>
-          <a class="button secondary" href="mailto:franciscoj_fernandez@icloud.com?subject=Request%20TERCIO%20Public%20Concept%20Note">Request public concept note</a>
+      <div class="hero-technical-grid" aria-hidden="true"></div>
+      <div class="container hero-layout">
+        <div class="hero-content">
+          <p class="eyebrow">ÍBERA SYSTEMS / TERCIO</p>
+          <h1>Break the chain.<br><em>Before it closes.</em></h1>
+          <p class="hero-copy">A passive-first, modular survivability architecture for dismounted teams facing thermal ISR, FPV and fibre-optic FPV pressure.</p>
+          <div class="button-row">
+            <a class="button primary" href="#tercio">Explore TERCIO</a>
+            <a class="button secondary" href="mailto:franciscoj_fernandez@icloud.com?subject=Request%20TERCIO%20Public%20Concept%20Note">Request public concept note</a>
+          </div>
+          <div class="status-strip" aria-label="Concept status">
+            <span>TRL 2 architecture study</span><span>No prototype</span><span>Unclassified public release</span>
+          </div>
         </div>
-        <div class="status-strip" aria-label="Concept status">
-          <span>TRL 2 architecture study</span><span>No prototype</span><span>Unclassified public release</span>
+
+        <div class="hero-system" aria-label="Conceptual TERCIO system architecture">
+          <svg class="hero-monogram" viewBox="0 0 520 640" role="img" aria-labelledby="hero-diagram-title hero-diagram-desc">
+            <title id="hero-diagram-title">ÍBERA monogram with TERCIO system layers</title>
+            <desc id="hero-diagram-desc">A fortified I monogram connected to five standalone capability nodes, representing the modular TERCIO architecture.</desc>
+            <defs>
+              <linearGradient id="towerFade" x1="0" x2="1">
+                <stop offset="0%" stop-color="#d7e1e7" stop-opacity="0.92"/>
+                <stop offset="100%" stop-color="#93a8b5" stop-opacity="0.38"/>
+              </linearGradient>
+            </defs>
+
+            <g class="system-lines" fill="none" stroke="#20aeb0" stroke-width="2">
+              <path d="M273 118H430"/>
+              <path d="M273 216H430"/>
+              <path d="M273 314H430"/>
+              <path d="M273 412H430"/>
+              <path d="M273 510H430"/>
+              <path d="M430 118V510" opacity=".38"/>
+            </g>
+
+            <g class="system-nodes">
+              <circle cx="430" cy="118" r="7"/>
+              <circle cx="430" cy="216" r="7"/>
+              <circle cx="430" cy="314" r="7"/>
+              <circle cx="430" cy="412" r="7"/>
+              <circle cx="430" cy="510" r="7"/>
+            </g>
+
+            <g class="tower" fill="url(#towerFade)">
+              <rect x="132" y="86" width="150" height="34"/>
+              <rect x="132" y="52" width="34" height="68"/>
+              <rect x="190" y="52" width="34" height="68"/>
+              <rect x="248" y="52" width="34" height="68"/>
+              <rect x="172" y="120" width="70" height="380"/>
+              <rect x="132" y="500" width="150" height="34"/>
+              <rect x="150" y="534" width="114" height="34"/>
+            </g>
+
+            <g class="tower-joints" stroke="#081119" stroke-width="5" opacity=".75">
+              <path d="M172 205H242"/>
+              <path d="M172 300H242"/>
+              <path d="M172 395H242"/>
+            </g>
+
+            <g class="layer-labels" font-family="Sora, Arial, sans-serif" font-size="13" letter-spacing="2">
+              <text x="449" y="123">L0</text>
+              <text x="449" y="221">L1</text>
+              <text x="449" y="319">L2</text>
+              <text x="449" y="417">L3</text>
+              <text x="449" y="515">L4</text>
+            </g>
+
+            <path class="copper-accent" d="M110 586H470"/>
+          </svg>
+          <p class="hero-diagram-note">Five standalone-capable layers.<br>One evidence-gated architecture.</p>
         </div>
       </div>
-      <div class="hero-mark" aria-hidden="true">I</div>
     </section>
 
     <section class="light-section" id="gap">
