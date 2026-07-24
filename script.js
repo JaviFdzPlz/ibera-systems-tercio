@@ -7,31 +7,32 @@ const heroDiagram=document.querySelector('.hero-monogram');
 if(heroDiagram){
   heroDiagram.setAttribute('viewBox','0 0 520 640');
   heroDiagram.innerHTML=`
-    <title id="hero-diagram-title">Official ÍBERA monogram with five concentric TERCIO functional layers</title>
-    <desc id="hero-diagram-desc">The fortified I monogram sits at the centre of five subtle concentric functional layers labelled L0 to L4. The rings are conceptual and do not indicate measured range.</desc>
-    <g class="coverage-rings" fill="none" stroke="#20aeb0">
-      <circle cx="250" cy="305" r="78" stroke-width="1.6" opacity=".34" stroke-dasharray="2 10"/>
-      <circle cx="250" cy="305" r="118" stroke-width="1.5" opacity=".28" stroke-dasharray="3 12"/>
-      <circle cx="250" cy="305" r="160" stroke-width="1.4" opacity=".23" stroke-dasharray="4 14"/>
-      <circle cx="250" cy="305" r="204" stroke-width="1.3" opacity=".19" stroke-dasharray="5 16"/>
-      <circle cx="250" cy="305" r="250" stroke-width="1.2" opacity=".16" stroke-dasharray="6 18"/>
+    <title id="hero-diagram-title">Official ÍBERA monogram with aligned TERCIO system layers</title>
+    <desc id="hero-diagram-desc">The fortified I master monogram anchors five conceptual capability layers aligned from its base to its crown.</desc>
+    <g class="system-lines" fill="none" stroke="#20aeb0" stroke-width="2">
+      <path d="M280 72H430"/>
+      <path d="M280 184H430"/>
+      <path d="M280 296H430"/>
+      <path d="M280 408H430"/>
+      <path d="M280 520H430"/>
+      <path d="M430 72V520" opacity=".38"/>
     </g>
-    <g class="ring-markers" fill="#081119" stroke="#20aeb0" stroke-width="2.6">
-      <circle cx="328" cy="305" r="6"/>
-      <circle cx="368" cy="305" r="6"/>
-      <circle cx="410" cy="305" r="6"/>
-      <circle cx="454" cy="305" r="6"/>
-      <circle cx="500" cy="305" r="6"/>
+    <g class="system-nodes">
+      <circle cx="430" cy="72" r="7"/>
+      <circle cx="430" cy="184" r="7"/>
+      <circle cx="430" cy="296" r="7"/>
+      <circle cx="430" cy="408" r="7"/>
+      <circle cx="430" cy="520" r="7"/>
     </g>
-    <g class="ring-labels" font-family="Sora,Arial,sans-serif" font-size="13" letter-spacing="2" fill="#7edddd">
-      <text x="316" y="287">L0</text>
-      <text x="356" y="274">L1</text>
-      <text x="398" y="261">L2</text>
-      <text x="442" y="248">L3</text>
-      <text x="478" y="235">L4</text>
+    <image href="assets/brand/IBERA_Monogram_Detailed_Reverse.svg" x="92" y="45" width="230" height="500" preserveAspectRatio="xMidYMid meet"/>
+    <g class="layer-labels" font-family="Sora,Arial,sans-serif" font-size="13" letter-spacing="2">
+      <text x="449" y="77">L4</text>
+      <text x="449" y="189">L3</text>
+      <text x="449" y="301">L2</text>
+      <text x="449" y="413">L1</text>
+      <text x="449" y="525">L0</text>
     </g>
-    <image href="assets/brand/IBERA_Monogram_Detailed_Reverse.svg" x="158" y="95" width="184" height="420" preserveAspectRatio="xMidYMid meet"/>
-    <path class="copper-accent" d="M82 586H470"/>
+    <path class="copper-accent" d="M110 586H470"/>
   `;
 }
 
