@@ -3,37 +3,49 @@ const nav=document.querySelector('#primary-nav');
 toggle?.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));});
 nav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');toggle?.setAttribute('aria-expanded','false');}));
 
-const heroDiagram=document.querySelector('.hero-monogram');
-if(heroDiagram){
-  heroDiagram.setAttribute('viewBox','0 0 520 640');
-  heroDiagram.innerHTML=`
-    <title id="hero-diagram-title">Official ÍBERA monogram with aligned TERCIO system layers</title>
-    <desc id="hero-diagram-desc">The fortified I master monogram anchors five conceptual capability layers aligned from its base to its crown.</desc>
-    <g class="system-lines" fill="none" stroke="#20aeb0" stroke-width="2">
-      <path d="M280 72H430"/>
-      <path d="M280 184H430"/>
-      <path d="M280 296H430"/>
-      <path d="M280 408H430"/>
-      <path d="M280 520H430"/>
-      <path d="M430 72V520" opacity=".38"/>
-    </g>
-    <g class="system-nodes">
-      <circle cx="430" cy="72" r="7"/>
-      <circle cx="430" cy="184" r="7"/>
-      <circle cx="430" cy="296" r="7"/>
-      <circle cx="430" cy="408" r="7"/>
-      <circle cx="430" cy="520" r="7"/>
-    </g>
-    <image href="assets/brand/IBERA_Monogram_Detailed_Reverse.svg" x="92" y="45" width="230" height="500" preserveAspectRatio="xMidYMid meet"/>
-    <g class="layer-labels" font-family="Sora,Arial,sans-serif" font-size="13" letter-spacing="2">
-      <text x="449" y="77">L4</text>
-      <text x="449" y="189">L3</text>
-      <text x="449" y="301">L2</text>
-      <text x="449" y="413">L1</text>
-      <text x="449" y="525">L0</text>
-    </g>
-    <path class="copper-accent" d="M110 586H470"/>
-  `;
+const hero=document.querySelector('.hero');
+if(hero&&!hero.querySelector('.hero-video')){
+  const video=document.createElement('video');
+  video.className='hero-video';
+  video.autoplay=true;
+  video.muted=true;
+  video.loop=true;
+  video.playsInline=true;
+  video.preload='metadata';
+  video.poster='assets/visuals/ibera_hero_background_v2_poster.jpg?v=20260724-1';
+  video.setAttribute('aria-hidden','true');
+  video.innerHTML='<source src="assets/visuals/ibera_hero_background_v2_web.mp4?v=20260724-1" type="video/mp4">';
+  hero.prepend(video);
+
+  const rotatingLine=hero.querySelector('h1 em');
+  const cues=[
+    {start:0,end:3.4,text:'Before detection.'},
+    {start:3.4,end:6.6,text:'Before targeting.'},
+    {start:6.6,end:9.7,text:'Before commitment.'},
+    {start:9.7,end:13.5,text:'Preserve the mission.'}
+  ];
+  let activeText='';
+  const updateCue=()=>{
+    if(!rotatingLine)return;
+    const t=video.currentTime||0;
+    const cue=cues.find(item=>t>=item.start&&t<item.end)||cues[0];
+    if(cue.text!==activeText){
+      activeText=cue.text;
+      rotatingLine.classList.remove('is-visible');
+      window.setTimeout(()=>{rotatingLine.textContent=cue.text;rotatingLine.classList.add('is-visible');},120);
+    }
+  };
+  video.addEventListener('loadedmetadata',updateCue);
+  video.addEventListener('timeupdate',updateCue);
+  video.play().catch(()=>hero.classList.add('hero-video-paused'));
+
+  const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+  const applyMotionPreference=()=>{
+    if(reducedMotion.matches){video.pause();video.removeAttribute('autoplay');if(rotatingLine){rotatingLine.textContent='Before it closes.';rotatingLine.classList.add('is-visible');}}
+    else{video.play().catch(()=>{});}
+  };
+  applyMotionPreference();
+  reducedMotion.addEventListener?.('change',applyMotionPreference);
 }
 
 const tercioSection=document.querySelector('#tercio');
