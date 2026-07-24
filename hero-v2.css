@@ -11,24 +11,28 @@
 .hero-copy{max-width:660px;color:#b9c7d0}
 .hero-system{position:relative;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px 0}
 .hero-system:before{content:"SYSTEM ARCHITECTURE / CONCEPT";position:absolute;top:10%;right:-2.2rem;transform:rotate(90deg);transform-origin:right top;font-size:.58rem;letter-spacing:.22em;color:rgba(120,221,221,.58);white-space:nowrap}
-.hero-monogram{width:min(100%,510px);max-height:650px;filter:drop-shadow(0 24px 60px rgba(0,0,0,.38))}
+.hero-monogram{width:min(100%,510px);height:auto;max-height:650px;filter:drop-shadow(0 24px 60px rgba(0,0,0,.38))}
 .system-lines{stroke-dasharray:3 8}
 .system-nodes circle{fill:#081119;stroke:#20aeb0;stroke-width:3}
 .layer-labels{fill:#7edddd}
 .copper-accent{fill:none;stroke:#b87333;stroke-width:5}
 .hero-diagram-note{width:min(100%,430px);margin:-12px 0 0;padding-top:18px;border-top:1px solid rgba(184,115,51,.62);font-size:.67rem;line-height:1.7;letter-spacing:.16em;text-transform:uppercase;color:#8398a5;text-align:right}
 
+/* Shared responsive concept-image treatment */
+.operational-context-visual,.system-concept-visual,.demonstrator-visual{width:min(var(--max),calc(100% - 48px));max-width:100%;min-width:0}
+.operational-context-visual img,.system-concept-visual img,.demonstrator-visual img{display:block;width:100%;max-width:100%;height:auto;aspect-ratio:auto;object-fit:contain}
+
 /* Operational context transition */
-.operational-context-transition{background:#eef2f4;padding:0 0 76px}
+.operational-context-transition{background:#eef2f4;padding:0 0 76px;overflow:hidden}
 .operational-context-visual{margin:0 auto}
-.operational-context-visual img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;border:1px solid rgba(13,32,48,.16);box-shadow:0 20px 48px rgba(7,31,49,.12)}
+.operational-context-visual img{border:1px solid rgba(13,32,48,.16);box-shadow:0 20px 48px rgba(7,31,49,.12)}
 .operational-context-visual figcaption{display:grid;grid-template-columns:max-content 1fr;gap:24px;align-items:start;margin-top:10px;padding-top:9px;border-top:1px solid rgba(13,32,48,.18)}
 .operational-context-visual figcaption span{font-size:.64rem;font-weight:600;letter-spacing:.14em;line-height:1.4;text-transform:uppercase;color:#6d808c}
 .operational-context-visual figcaption small{font-size:.75rem;line-height:1.5;color:#7a8c97}
 
 /* Integrated architecture concept visual */
 .system-concept-visual{margin:54px auto 0}
-.system-concept-visual img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;border:1px solid rgba(126,221,221,.2);box-shadow:0 22px 58px rgba(0,0,0,.32)}
+.system-concept-visual img{border:1px solid rgba(126,221,221,.2);box-shadow:0 22px 58px rgba(0,0,0,.32)}
 .system-concept-visual .concept-caption{border-top-color:rgba(126,221,221,.18);color:#8398a5}
 .system-concept-visual .concept-caption span{display:block;margin-top:5px;font-weight:400;letter-spacing:.04em;text-transform:none;color:#708591}
 
@@ -39,7 +43,7 @@
 .demonstrators-head h2 em{color:#d78a19;font-weight:400}
 .demonstrators-head>div:last-child{color:#586b78;font-size:1rem}
 .demonstrator-visual{margin:54px auto 0}
-.demonstrator-visual img{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;border:1px solid rgba(13,32,48,.16);box-shadow:0 18px 42px rgba(7,31,49,.10)}
+.demonstrator-visual img{border:1px solid rgba(13,32,48,.16);box-shadow:0 18px 42px rgba(7,31,49,.10)}
 .concept-caption{margin-top:10px;padding-top:9px;border-top:1px solid rgba(13,32,48,.18);font-size:.66rem;font-weight:600;letter-spacing:.14em;line-height:1.4;text-transform:uppercase;color:#6d808c}
 .mvp-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:64px}
 .mvp-card{position:relative;background:#fff;border:1px solid #cbd5db;padding:26px 22px 24px;min-height:330px;display:flex;flex-direction:column}
@@ -57,5 +61,6 @@
 .pathway-rule p{margin:0;color:#536775}
 
 @media(max-width:1050px){.mvp-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:900px){.hero-layout{grid-template-columns:1fr;gap:16px;padding-top:95px}.hero-content{max-width:760px}.hero-system{width:min(72vw,470px);justify-self:end;margin-top:-30px;opacity:.72}.hero-system:before{display:none}.hero-monogram{max-height:430px}.hero-diagram-note{display:none}.operational-context-visual figcaption{grid-template-columns:1fr;gap:5px}.demonstrators-head{grid-template-columns:1fr;gap:28px}.mvp-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:580px){.hero{min-height:auto}.hero-layout{padding:90px 0 58px}.hero h1{font-size:clamp(3.55rem,17vw,5.4rem)}.hero-system{width:82vw;justify-self:center;margin-top:-18px;opacity:.54}.hero-monogram{max-height:340px}.hero-technical-grid{opacity:.2}.operational-context-transition{padding-bottom:52px}.operational-context-visual figcaption span{font-size:.59rem;letter-spacing:.11em}.system-concept-visual,.demonstrator-visual{margin-top:36px}.concept-caption{font-size:.6rem;letter-spacing:.11em}.mvp-grid{grid-template-columns:1fr}.mvp-card{min-height:280px}.pathway-rule{grid-template-columns:1fr;gap:8px}}
+@media(max-width:900px){.hero-layout{grid-template-columns:1fr;gap:16px;padding-top:95px}.hero-content{max-width:760px}.hero-system{width:min(72vw,470px);max-width:100%;justify-self:end;margin-top:-30px;opacity:.72}.hero-system:before{display:none}.hero-monogram{width:100%;max-height:none}.hero-diagram-note{display:none}.operational-context-visual figcaption{grid-template-columns:1fr;gap:5px}.demonstrators-head{grid-template-columns:1fr;gap:28px}.mvp-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:580px){.operational-context-visual,.system-concept-visual,.demonstrator-visual{width:calc(100% - 28px)}.hero{min-height:auto}.hero-layout{padding:90px 0 58px}.hero h1{font-size:clamp(3.2rem,16vw,5rem)}.hero-system{width:100%;justify-self:center;margin-top:0;opacity:.62;padding-inline:8px}.hero-monogram{width:100%;height:auto}.hero-technical-grid{opacity:.2}.operational-context-transition{padding-bottom:52px}.operational-context-visual figcaption span{font-size:.59rem;letter-spacing:.11em}.system-concept-visual,.demonstrator-visual{margin-top:36px}.concept-caption{font-size:.6rem;letter-spacing:.11em}.mvp-grid{grid-template-columns:1fr}.mvp-card{min-height:280px}.pathway-rule{grid-template-columns:1fr;gap:8px}}
+@media(max-width:900px) and (orientation:landscape){.hero-layout{grid-template-columns:minmax(0,1.1fr) minmax(250px,.9fr);gap:20px;padding:72px 0 44px}.hero-system{width:100%;margin-top:0;justify-self:stretch}.hero h1{font-size:clamp(3rem,8vw,5rem)}.operational-context-visual,.system-concept-visual,.demonstrator-visual{width:calc(100% - 32px)}}
