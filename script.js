@@ -40,11 +40,12 @@ if(tercioSection){
     umbrella.innerHTML='<div><span>TERCIO / SYSTEM OF SYSTEMS</span><h3>Five standalone-capable layers.<br>One evidence-gated architecture.</h3><p>Condition · Conceal · Detect · Extend · React · Deceive · Protect</p></div><strong>Explore the architecture →</strong>';
     layerGrid.before(umbrella);
   }
-  const routes={URCE:'urce.html',GADIR:'gadir.html',ATALA:'atala.html',ALANO:'alano.html',ARDID:'#demonstrators'};
+  const routes={URCE:'urce.html',GADIR:'gadir.html',ATALA:'atala.html',ALANO:'alano.html',ARDID:'ardid.html'};
   const descriptions={
     ALANO:'Attritable forward, remote or mobile nodes that extend sensing, cueing, relay and selected local non-kinetic response functions.',
     ARDID:'Coordinated deception and perception shaping that creates false signatures, alternate cues and ambiguity before target commitment.'
   };
+  const published=['URCE','GADIR','ATALA','ALANO','ARDID'];
   tercioSection.querySelectorAll('.layer-card').forEach(card=>{
     const name=card.querySelector('h3')?.textContent?.trim();
     if(!name||card.closest('a'))return;
@@ -52,9 +53,9 @@ if(tercioSection){
     if(description&&descriptions[name])description.textContent=descriptions[name];
     const link=document.createElement('a');
     link.className='layer-card-link';link.href=routes[name]||'#demonstrators';
-    if(!['URCE','GADIR','ATALA','ALANO'].includes(name))link.setAttribute('aria-label',`${name} capability — detailed page in development`);
+    if(!published.includes(name))link.setAttribute('aria-label',`${name} capability — detailed page in development`);
     card.replaceWith(link);link.append(card);
-    const hint=document.createElement('span');hint.className='card-explore';hint.textContent=['URCE','GADIR','ATALA','ALANO'].includes(name)?'Explore system →':'Capability page in development';card.append(hint);
+    const hint=document.createElement('span');hint.className='card-explore';hint.textContent=published.includes(name)?'Explore system →':'Capability page in development';card.append(hint);
   });
   if(!document.querySelector('.system-concept-visual')){
     const figure=document.createElement('figure');figure.className='container system-concept-visual';
