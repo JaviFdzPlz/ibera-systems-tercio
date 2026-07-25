@@ -37,13 +37,19 @@ if(tercioSection){
     const umbrella=document.createElement('a');
     umbrella.className='container tercio-umbrella-card';
     umbrella.href='#demonstrators';
-    umbrella.innerHTML='<div><span>TERCIO / SYSTEM OF SYSTEMS</span><h3>Five standalone-capable layers.<br>One evidence-gated architecture.</h3><p>Condition · Conceal · Detect · Extend · Deceive · Protect</p></div><strong>Explore the architecture →</strong>';
+    umbrella.innerHTML='<div><span>TERCIO / SYSTEM OF SYSTEMS</span><h3>Five standalone-capable layers.<br>One evidence-gated architecture.</h3><p>Condition · Conceal · Detect · Extend · React · Deceive · Protect</p></div><strong>Explore the architecture →</strong>';
     layerGrid.before(umbrella);
   }
   const routes={URCE:'urce.html',GADIR:'gadir.html',ATALA:'atala.html',ALANO:'alano.html',ARDID:'#demonstrators'};
+  const descriptions={
+    ALANO:'Attritable forward, remote or mobile nodes that extend sensing, cueing, relay and selected local non-kinetic response functions.',
+    ARDID:'Coordinated deception and perception shaping that creates false signatures, alternate cues and ambiguity before target commitment.'
+  };
   tercioSection.querySelectorAll('.layer-card').forEach(card=>{
     const name=card.querySelector('h3')?.textContent?.trim();
     if(!name||card.closest('a'))return;
+    const description=card.querySelector('p');
+    if(description&&descriptions[name])description.textContent=descriptions[name];
     const link=document.createElement('a');
     link.className='layer-card-link';link.href=routes[name]||'#demonstrators';
     if(!['URCE','GADIR','ATALA','ALANO'].includes(name))link.setAttribute('aria-label',`${name} capability — detailed page in development`);
@@ -52,7 +58,7 @@ if(tercioSection){
   });
   if(!document.querySelector('.system-concept-visual')){
     const figure=document.createElement('figure');figure.className='container system-concept-visual';
-    figure.innerHTML='<img src="assets/visuals/tercio-integrated-concept.jpg" alt="Concept render illustrating the interaction of TERCIO survivability capabilities" width="1439" height="810" loading="lazy"><figcaption class="concept-caption">Integrated architecture concept — not a fielded configuration<span>Illustrative interaction of signature management, warning, distributed geometry and deception.</span></figcaption>';
+    figure.innerHTML='<img src="assets/visuals/tercio-integrated-concept.jpg" alt="Concept render illustrating the interaction of TERCIO survivability capabilities" width="1439" height="810" loading="lazy"><figcaption class="concept-caption">Integrated architecture concept — not a fielded configuration<span>Illustrative interaction of signature management, warning, distributed geometry, local response and deception.</span></figcaption>';
     layerGrid?.after(figure);
   }
 }
