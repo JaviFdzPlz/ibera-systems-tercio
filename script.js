@@ -40,15 +40,15 @@ if(tercioSection){
     umbrella.innerHTML='<div><span>TERCIO / SYSTEM OF SYSTEMS</span><h3>Five standalone-capable layers.<br>One evidence-gated architecture.</h3><p>Condition · Conceal · Detect · Extend · Deceive · Protect</p></div><strong>Explore the architecture →</strong>';
     layerGrid.before(umbrella);
   }
-  const routes={URCE:'urce.html',GADIR:'gadir.html',ATALA:'atala.html',ALANO:'#demonstrators',ARDID:'#demonstrators'};
+  const routes={URCE:'urce.html',GADIR:'gadir.html',ATALA:'atala.html',ALANO:'alano.html',ARDID:'#demonstrators'};
   tercioSection.querySelectorAll('.layer-card').forEach(card=>{
     const name=card.querySelector('h3')?.textContent?.trim();
     if(!name||card.closest('a'))return;
     const link=document.createElement('a');
     link.className='layer-card-link';link.href=routes[name]||'#demonstrators';
-    if(!['URCE','GADIR','ATALA'].includes(name))link.setAttribute('aria-label',`${name} capability — detailed page in development`);
+    if(!['URCE','GADIR','ATALA','ALANO'].includes(name))link.setAttribute('aria-label',`${name} capability — detailed page in development`);
     card.replaceWith(link);link.append(card);
-    const hint=document.createElement('span');hint.className='card-explore';hint.textContent=['URCE','GADIR','ATALA'].includes(name)?'Explore system →':'Capability page in development';card.append(hint);
+    const hint=document.createElement('span');hint.className='card-explore';hint.textContent=['URCE','GADIR','ATALA','ALANO'].includes(name)?'Explore system →':'Capability page in development';card.append(hint);
   });
   if(!document.querySelector('.system-concept-visual')){
     const figure=document.createElement('figure');figure.className='container system-concept-visual';
