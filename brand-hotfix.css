@@ -28,6 +28,34 @@
   height: 50px;
 }
 
+/* Temporary compatibility for browsers retaining the preceding JS build. */
+.brand-lockup__type {
+  display: flex;
+  width: 118px;
+  min-width: 118px;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1;
+}
+
+.brand-lockup__type strong {
+  display: block;
+  font-family: "Sora", "Avenir Next", Arial, sans-serif;
+  font-size: 1.08rem;
+  font-weight: 700;
+  letter-spacing: .075em;
+}
+
+.brand-lockup__type small {
+  display: block;
+  margin-top: 5px;
+  padding-left: 1px;
+  font-family: "Sora", "Avenir Next", Arial, sans-serif;
+  font-size: .44rem;
+  font-weight: 600;
+  letter-spacing: .42em;
+}
+
 .site-header .brand {
   display: flex;
   width: 188px !important;
@@ -56,9 +84,22 @@
   height: 48px;
 }
 
-.footer-brand .brand-lockup__wordmark {
+.footer-brand .brand-lockup__wordmark,
+.footer-brand .brand-lockup__type {
   width: 146px;
+  min-width: 146px;
+}
+
+.footer-brand .brand-lockup__wordmark {
   height: 60px;
+}
+
+.footer-brand .brand-lockup__type strong {
+  font-size: 1.18rem;
+}
+
+.footer-brand .brand-lockup__type small {
+  font-size: .48rem;
 }
 
 .brand-lockup--about {
@@ -72,9 +113,22 @@
   height: 76px;
 }
 
-.brand-lockup--about .brand-lockup__wordmark {
+.brand-lockup--about .brand-lockup__wordmark,
+.brand-lockup--about .brand-lockup__type {
   width: 218px;
+  min-width: 218px;
+}
+
+.brand-lockup--about .brand-lockup__wordmark {
   height: 108px;
+}
+
+.brand-lockup--about .brand-lockup__type strong {
+  font-size: 1.58rem;
+}
+
+.brand-lockup--about .brand-lockup__type small {
+  font-size: .62rem;
 }
 
 @media (max-width: 1050px) {
@@ -92,9 +146,18 @@
     height: 35px;
   }
 
-  .site-header .brand-lockup__wordmark {
+  .site-header .brand-lockup__wordmark,
+  .site-header .brand-lockup__type {
     width: 108px;
+    min-width: 108px;
+  }
+
+  .site-header .brand-lockup__wordmark {
     height: 46px;
+  }
+
+  .site-header .brand-lockup__type strong {
+    font-size: .98rem;
   }
 }
 
@@ -114,9 +177,23 @@
     height: 32px;
   }
 
-  .site-header .brand-lockup__wordmark {
+  .site-header .brand-lockup__wordmark,
+  .site-header .brand-lockup__type {
     width: 98px;
+    min-width: 98px;
+  }
+
+  .site-header .brand-lockup__wordmark {
     height: 42px;
+  }
+
+  .site-header .brand-lockup__type strong {
+    font-size: .88rem;
+  }
+
+  .site-header .brand-lockup__type small {
+    margin-top: 4px;
+    font-size: .37rem;
   }
 
   .brand-lockup--about {
@@ -128,8 +205,13 @@
     height: 58px;
   }
 
-  .brand-lockup--about .brand-lockup__wordmark {
+  .brand-lockup--about .brand-lockup__wordmark,
+  .brand-lockup--about .brand-lockup__type {
     width: 170px;
+    min-width: 170px;
+  }
+
+  .brand-lockup--about .brand-lockup__wordmark {
     height: 84px;
   }
 }
