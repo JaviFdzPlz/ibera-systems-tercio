@@ -1,0 +1,119 @@
+/* Production brand rendering hotfix — 2026-07-29 */
+.brand-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  color: #F7F4ED;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.brand-lockup__mark {
+  display: block;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.brand-lockup__type {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1;
+}
+
+.brand-lockup__type strong {
+  display: block;
+  font-family: "Sora", "Avenir Next", Arial, sans-serif;
+  font-size: 1.02rem;
+  font-weight: 700;
+  letter-spacing: .075em;
+}
+
+.brand-lockup__type small {
+  display: block;
+  margin-top: 5px;
+  padding-left: 1px;
+  font-family: "Sora", "Avenir Next", Arial, sans-serif;
+  font-size: .43rem;
+  font-weight: 600;
+  letter-spacing: .42em;
+}
+
+.site-header .brand {
+  width: auto !important;
+  min-width: 218px;
+  height: 54px;
+  overflow: visible;
+}
+
+.site-header .brand .brand-lockup {
+  width: auto;
+  height: 100%;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: flex-start;
+}
+
+.footer-brand .brand-lockup__mark {
+  width: 52px;
+  height: 52px;
+  flex-basis: 52px;
+}
+
+.footer-brand .brand-lockup__type strong {
+  font-size: 1.12rem;
+}
+
+.footer-brand .brand-lockup__type small {
+  font-size: .47rem;
+}
+
+.brand-lockup--about {
+  margin-top: 32px;
+}
+
+.brand-lockup--about .brand-lockup__mark {
+  width: 72px;
+  height: 72px;
+  flex-basis: 72px;
+}
+
+.brand-lockup--about .brand-lockup__type strong {
+  font-size: 1.45rem;
+}
+
+.brand-lockup--about .brand-lockup__type small {
+  font-size: .58rem;
+}
+
+@media (max-width: 580px) {
+  .site-header .brand {
+    min-width: 176px;
+    height: 48px;
+  }
+
+  .site-header .brand-lockup {
+    gap: 9px;
+  }
+
+  .site-header .brand-lockup__mark {
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
+  }
+
+  .site-header .brand-lockup__type strong {
+    font-size: .86rem;
+  }
+
+  .site-header .brand-lockup__type small {
+    margin-top: 4px;
+    font-size: .37rem;
+  }
+}
