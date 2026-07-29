@@ -1,11 +1,11 @@
 const identityStyles = document.createElement('link');
 identityStyles.rel = 'stylesheet';
-identityStyles.href = 'identity-v2.css?v=20260729-5';
+identityStyles.href = 'identity-v2.css?v=20260729-6';
 document.head.append(identityStyles);
 
 const brandStyles = document.createElement('link');
 brandStyles.rel = 'stylesheet';
-brandStyles.href = 'brand-hotfix.css?v=20260729-5';
+brandStyles.href = 'brand-hotfix.css?v=20260729-6';
 document.head.append(brandStyles);
 
 const soraPreconnect = document.createElement('link');
@@ -21,30 +21,61 @@ document.head.append(soraFonts);
 document.documentElement.classList.add('identity-v2');
 
 const BRAND_ASSETS = {
-  mark: 'assets/brand/v2/favicon.svg?v=20260729-5',
-  favicon: 'assets/brand/v2/favicon-browser.svg?v=20260729-5'
+  mark: 'assets/brand/v2/favicon.svg?v=20260729-6',
+  wordmark: 'assets/brand/v2/IBERA_Horizontal_Inverse_v1.0.svg?v=20260729-6'
 };
 
-const faviconLinks = document.querySelectorAll('link[rel~="icon"]');
-if (faviconLinks.length) {
-  faviconLinks.forEach((link) => {
-    link.type = 'image/svg+xml';
-    link.href = BRAND_ASSETS.favicon;
-    link.setAttribute('sizes', 'any');
-  });
-} else {
-  const favicon = document.createElement('link');
+const installBrowserFavicon = () => {
+  const favicon = document.querySelector('link[rel~="icon"]') || document.createElement('link');
   favicon.rel = 'icon';
   favicon.type = 'image/svg+xml';
-  favicon.href = BRAND_ASSETS.favicon;
-  favicon.setAttribute('sizes', 'any');
-  document.head.append(favicon);
-}
+  favicon.href = BRAND_ASSETS.mark;
+  if (!favicon.parentNode) document.head.append(favicon);
+
+  const mark = new Image();
+  mark.onload = () => {
+    const size = 64;
+    const inset = 8;
+    const radius = 13;
+    const canvas = document.createElement('canvas');
+    canvas.width = size;
+    canvas.height = size;
+    const context = canvas.getContext('2d');
+    if (!context) return;
+
+    context.beginPath();
+    context.moveTo(radius, 0);
+    context.lineTo(size - radius, 0);
+    context.quadraticCurveTo(size, 0, size, radius);
+    context.lineTo(size, size - radius);
+    context.quadraticCurveTo(size, size, size - radius, size);
+    context.lineTo(radius, size);
+    context.quadraticCurveTo(0, size, 0, size - radius);
+    context.lineTo(0, radius);
+    context.quadraticCurveTo(0, 0, radius, 0);
+    context.closePath();
+    context.fillStyle = '#2D2D2D';
+    context.fill();
+
+    context.drawImage(mark, inset, inset, size - inset * 2, size - inset * 2);
+    context.globalCompositeOperation = 'source-in';
+    context.fillStyle = '#F7F4ED';
+    context.fillRect(0, 0, size, size);
+    context.globalCompositeOperation = 'source-over';
+
+    favicon.type = 'image/png';
+    favicon.sizes = '64x64';
+    favicon.href = canvas.toDataURL('image/png');
+  };
+  mark.src = BRAND_ASSETS.mark;
+};
+
+installBrowserFavicon();
 
 const brandMarkup = (modifier = '') => `
   <span class="brand-lockup${modifier ? ` ${modifier}` : ''}">
     <img class="brand-lockup__mark" src="${BRAND_ASSETS.mark}" alt="" aria-hidden="true">
-    <span class="brand-lockup__type"><strong>ÍBERA</strong><small>SYSTEMS</small></span>
+    <img class="brand-lockup__wordmark" src="${BRAND_ASSETS.wordmark}" alt="ÍBERA Systems">
   </span>`;
 
 document.querySelectorAll('.site-header .brand').forEach((brand) => {
