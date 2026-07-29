@@ -1,3 +1,38 @@
+const identityStyles = document.createElement('link');
+identityStyles.rel = 'stylesheet';
+identityStyles.href = 'identity-v2.css?v=20260729-2';
+document.head.append(identityStyles);
+
+const soraPreconnect = document.createElement('link');
+soraPreconnect.rel = 'preconnect';
+soraPreconnect.href = 'https://fonts.googleapis.com';
+document.head.append(soraPreconnect);
+
+const soraFonts = document.createElement('link');
+soraFonts.rel = 'stylesheet';
+soraFonts.href = 'https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap';
+document.head.append(soraFonts);
+
+document.documentElement.classList.add('identity-v2');
+
+const BRAND_ASSETS = {
+  horizontalInverse: 'assets/brand/v2/IBERA_Horizontal_Inverse_v1.0.svg',
+  favicon: 'assets/brand/v2/favicon.svg'
+};
+
+const favicon = document.querySelector('link[rel="icon"]') || document.createElement('link');
+favicon.rel = 'icon';
+favicon.type = 'image/svg+xml';
+favicon.href = BRAND_ASSETS.favicon;
+if (!favicon.parentNode) document.head.append(favicon);
+
+document.querySelectorAll('.brand img, .footer-brand img, .about-grid > div:first-child img').forEach((image) => {
+  image.src = BRAND_ASSETS.horizontalInverse;
+  image.alt = 'ÍBERA Systems';
+  image.removeAttribute('width');
+  image.removeAttribute('height');
+});
+
 const toggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('#primary-nav');
 
