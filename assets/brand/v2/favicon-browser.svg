@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="ÍBERA Systems">
+  <rect width="64" height="64" rx="12" fill="#2D2D2D"/>
+  <path d="M22 20h14v34H22zM30 7h15L31 16H20z" fill="#F7F4ED"/>
+  <path d="M8 58h48" stroke="#B87333" stroke-width="3"/>
+</svg>
