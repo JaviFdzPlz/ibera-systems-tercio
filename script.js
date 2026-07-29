@@ -1,6 +1,6 @@
 const identityStyles = document.createElement('link');
 identityStyles.rel = 'stylesheet';
-identityStyles.href = 'identity-v2.css?v=20260729-1';
+identityStyles.href = 'identity-v2.css?v=20260729-2';
 document.head.append(identityStyles);
 
 const soraPreconnect = document.createElement('link');
@@ -15,9 +15,8 @@ document.head.append(soraFonts);
 
 document.documentElement.classList.add('identity-v2');
 
-const BRAND_AUTHORITY_ROOT = 'https://github.com/JaviFdzPlz/ibera-systems-workspace/raw/refs/tags/corporate-identity-v2.0/01_BRAND/01_Master_Identity/Master_v2.0_Package/IBERA_Systems_Visual_Identity_Master_v2.0_2026-07-29';
 const BRAND_ASSETS = {
-  horizontalInverse: `${BRAND_AUTHORITY_ROOT}/02_Lockups/IBERA_Horizontal_Inverse_v1.0.svg`,
+  horizontalInverse: 'assets/brand/v2/IBERA_Horizontal_Inverse_v1.0.svg',
   favicon: 'assets/brand/v2/favicon.svg'
 };
 
@@ -32,10 +31,6 @@ document.querySelectorAll('.brand img, .footer-brand img, .about-grid > div:firs
   image.alt = 'ÍBERA Systems';
   image.removeAttribute('width');
   image.removeAttribute('height');
-  image.addEventListener('error', () => {
-    image.hidden = true;
-    image.parentElement?.setAttribute('data-brand-unavailable', 'true');
-  }, { once: true });
 });
 
 const toggle = document.querySelector('.menu-toggle');
