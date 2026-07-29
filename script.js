@@ -1,3 +1,43 @@
+const identityStyles = document.createElement('link');
+identityStyles.rel = 'stylesheet';
+identityStyles.href = 'identity-v2.css?v=20260729-1';
+document.head.append(identityStyles);
+
+const soraPreconnect = document.createElement('link');
+soraPreconnect.rel = 'preconnect';
+soraPreconnect.href = 'https://fonts.googleapis.com';
+document.head.append(soraPreconnect);
+
+const soraFonts = document.createElement('link');
+soraFonts.rel = 'stylesheet';
+soraFonts.href = 'https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap';
+document.head.append(soraFonts);
+
+document.documentElement.classList.add('identity-v2');
+
+const BRAND_AUTHORITY_ROOT = 'https://github.com/JaviFdzPlz/ibera-systems-workspace/raw/refs/tags/corporate-identity-v2.0/01_BRAND/01_Master_Identity/Master_v2.0_Package/IBERA_Systems_Visual_Identity_Master_v2.0_2026-07-29';
+const BRAND_ASSETS = {
+  horizontalInverse: `${BRAND_AUTHORITY_ROOT}/02_Lockups/IBERA_Horizontal_Inverse_v1.0.svg`,
+  favicon: 'assets/brand/v2/favicon.svg'
+};
+
+const favicon = document.querySelector('link[rel="icon"]') || document.createElement('link');
+favicon.rel = 'icon';
+favicon.type = 'image/svg+xml';
+favicon.href = BRAND_ASSETS.favicon;
+if (!favicon.parentNode) document.head.append(favicon);
+
+document.querySelectorAll('.brand img, .footer-brand img, .about-grid > div:first-child img').forEach((image) => {
+  image.src = BRAND_ASSETS.horizontalInverse;
+  image.alt = 'ÍBERA Systems';
+  image.removeAttribute('width');
+  image.removeAttribute('height');
+  image.addEventListener('error', () => {
+    image.hidden = true;
+    image.parentElement?.setAttribute('data-brand-unavailable', 'true');
+  }, { once: true });
+});
+
 const toggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('#primary-nav');
 
