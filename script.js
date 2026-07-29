@@ -1,7 +1,12 @@
 const identityStyles = document.createElement('link');
 identityStyles.rel = 'stylesheet';
-identityStyles.href = 'identity-v2.css?v=20260729-2';
+identityStyles.href = 'identity-v2.css?v=20260729-5';
 document.head.append(identityStyles);
+
+const brandStyles = document.createElement('link');
+brandStyles.rel = 'stylesheet';
+brandStyles.href = 'brand-hotfix.css?v=20260729-5';
+document.head.append(brandStyles);
 
 const soraPreconnect = document.createElement('link');
 soraPreconnect.rel = 'preconnect';
@@ -16,22 +21,47 @@ document.head.append(soraFonts);
 document.documentElement.classList.add('identity-v2');
 
 const BRAND_ASSETS = {
-  horizontalInverse: 'assets/brand/v2/IBERA_Horizontal_Inverse_v1.0.svg',
-  favicon: 'assets/brand/v2/favicon.svg'
+  mark: 'assets/brand/v2/favicon.svg?v=20260729-5',
+  favicon: 'assets/brand/v2/favicon-browser.svg?v=20260729-5'
 };
 
-const favicon = document.querySelector('link[rel="icon"]') || document.createElement('link');
-favicon.rel = 'icon';
-favicon.type = 'image/svg+xml';
-favicon.href = BRAND_ASSETS.favicon;
-if (!favicon.parentNode) document.head.append(favicon);
+const faviconLinks = document.querySelectorAll('link[rel~="icon"]');
+if (faviconLinks.length) {
+  faviconLinks.forEach((link) => {
+    link.type = 'image/svg+xml';
+    link.href = BRAND_ASSETS.favicon;
+    link.setAttribute('sizes', 'any');
+  });
+} else {
+  const favicon = document.createElement('link');
+  favicon.rel = 'icon';
+  favicon.type = 'image/svg+xml';
+  favicon.href = BRAND_ASSETS.favicon;
+  favicon.setAttribute('sizes', 'any');
+  document.head.append(favicon);
+}
 
-document.querySelectorAll('.brand img, .footer-brand img, .about-grid > div:first-child img').forEach((image) => {
-  image.src = BRAND_ASSETS.horizontalInverse;
-  image.alt = 'ÍBERA Systems';
-  image.removeAttribute('width');
-  image.removeAttribute('height');
+const brandMarkup = (modifier = '') => `
+  <span class="brand-lockup${modifier ? ` ${modifier}` : ''}">
+    <img class="brand-lockup__mark" src="${BRAND_ASSETS.mark}" alt="" aria-hidden="true">
+    <span class="brand-lockup__type"><strong>ÍBERA</strong><small>SYSTEMS</small></span>
+  </span>`;
+
+document.querySelectorAll('.site-header .brand').forEach((brand) => {
+  brand.innerHTML = brandMarkup();
+  brand.setAttribute('aria-label', 'ÍBERA Systems home');
 });
+
+document.querySelectorAll('.footer-brand').forEach((brand) => {
+  brand.innerHTML = brandMarkup();
+});
+
+const aboutBrandImage = document.querySelector('.about-grid > div:first-child img');
+if (aboutBrandImage) {
+  const aboutBrand = document.createElement('div');
+  aboutBrand.innerHTML = brandMarkup('brand-lockup--about');
+  aboutBrandImage.replaceWith(aboutBrand.firstElementChild);
+}
 
 const toggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('#primary-nav');
