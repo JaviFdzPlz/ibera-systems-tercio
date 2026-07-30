@@ -1,25 +1,3 @@
-const identityStyles = document.createElement('link');
-identityStyles.rel = 'stylesheet';
-identityStyles.href = 'identity-v2.css?v=20260730-3';
-document.head.append(identityStyles);
-
-const brandStyles = document.createElement('link');
-brandStyles.rel = 'stylesheet';
-brandStyles.href = 'brand-hotfix.css?v=20260730-3';
-document.head.append(brandStyles);
-
-const soraPreconnect = document.createElement('link');
-soraPreconnect.rel = 'preconnect';
-soraPreconnect.href = 'https://fonts.googleapis.com';
-document.head.append(soraPreconnect);
-
-const soraFonts = document.createElement('link');
-soraFonts.rel = 'stylesheet';
-soraFonts.href = 'https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&display=swap';
-document.head.append(soraFonts);
-
-document.documentElement.classList.add('identity-v2');
-
 const toggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('#primary-nav');
 
