@@ -1,0 +1,63 @@
+name: ÍBERA final brand propagation
+
+on:
+  push:
+    paths:
+      - .github/workflows/ibera-brand-final-propagation.yml
+
+permissions:
+  contents: write
+
+jobs:
+  propagate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Propagate complete lockup and detailed favicon
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          pages = [
+              Path("index.html"),
+              Path("urce.html"),
+              Path("gadir.html"),
+              Path("atala.html"),
+              Path("alano.html"),
+              Path("ardid.html"),
+          ]
+          release = "20260730-2"
+
+          for page in pages:
+              text = page.read_text(encoding="utf-8")
+              text = re.sub(
+                  r'assets/brand/v2/favicon\.svg(?:\?v=[^"\']+)?',
+                  f'assets/brand/v2/favicon-64x64.png?v={release}',
+                  text,
+              )
+              text = re.sub(
+                  r'assets/brand/v2/IBERA_Horizontal_Inverse_v1\.0\.svg(?:\?v=[^"\']+)?',
+                  f'assets/brand/v2/IBERA_Horizontal_Inverse_Web.png?v={release}',
+                  text,
+              )
+              text = re.sub(
+                  r'script\.js(?:\?v=[^"\']+)?',
+                  f'script.js?v={release}',
+                  text,
+              )
+              text = text.replace('type="image/svg+xml"', 'type="image/png" sizes="64x64"')
+              page.write_text(text, encoding="utf-8")
+
+          Path(".github/workflows/ibera-brand-final-propagation.yml").unlink()
+
+      - name: Commit propagated production references
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html urce.html gadir.html atala.html alano.html ardid.html .github/workflows/ibera-brand-final-propagation.yml
+          git commit -m "Propagate complete approved lockup across all pages"
+          git push
