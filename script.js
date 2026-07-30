@@ -1,11 +1,11 @@
 const identityStyles = document.createElement('link');
 identityStyles.rel = 'stylesheet';
-identityStyles.href = 'identity-v2.css?v=20260730-1';
+identityStyles.href = 'identity-v2.css?v=20260730-2';
 document.head.append(identityStyles);
 
 const brandStyles = document.createElement('link');
 brandStyles.rel = 'stylesheet';
-brandStyles.href = 'brand-hotfix.css?v=20260730-1';
+brandStyles.href = 'brand-hotfix.css?v=20260730-2';
 document.head.append(brandStyles);
 
 const soraPreconnect = document.createElement('link');
@@ -21,23 +21,24 @@ document.head.append(soraFonts);
 document.documentElement.classList.add('identity-v2');
 
 const BRAND_ASSETS = {
-  mark: 'assets/brand/v2/favicon.svg?v=20260730-1',
-  wordmark: 'assets/brand/v2/IBERA_Horizontal_Inverse_v1.0.svg?v=20260730-1'
+  mark: 'assets/brand/v2/IBERA_Rodete_Master_Inverse_Web.png?v=20260730-2',
+  wordmark: 'assets/brand/v2/IBERA_Horizontal_Inverse_v1.0.svg?v=20260730-2',
+  favicon: 'assets/brand/v2/favicon-64x64.png?v=20260730-2'
 };
 
 const faviconLinks = document.querySelectorAll('link[rel~="icon"]');
 if (faviconLinks.length) {
   faviconLinks.forEach((link) => {
-    link.type = 'image/svg+xml';
-    link.href = BRAND_ASSETS.mark;
-    link.setAttribute('sizes', 'any');
+    link.type = 'image/png';
+    link.href = BRAND_ASSETS.favicon;
+    link.setAttribute('sizes', '64x64');
   });
 } else {
   const favicon = document.createElement('link');
   favicon.rel = 'icon';
-  favicon.type = 'image/svg+xml';
-  favicon.href = BRAND_ASSETS.mark;
-  favicon.setAttribute('sizes', 'any');
+  favicon.type = 'image/png';
+  favicon.href = BRAND_ASSETS.favicon;
+  favicon.setAttribute('sizes', '64x64');
   document.head.append(favicon);
 }
 
