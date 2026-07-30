@@ -14,18 +14,21 @@ nav?.querySelectorAll('a').forEach((link) => {
 });
 
 const hero = document.querySelector('.hero');
-if (hero && !hero.querySelector('.hero-video')) {
-  const video = document.createElement('video');
-  video.className = 'hero-video';
-  video.autoplay = true;
-  video.muted = true;
-  video.loop = true;
-  video.playsInline = true;
-  video.preload = 'metadata';
-  video.poster = 'assets/visuals/ibera_hero_background_v2_poster.jpg?v=20260724-1';
-  video.setAttribute('aria-hidden', 'true');
-  video.innerHTML = '<source src="assets/visuals/ibera_hero_background_v2_web.mp4?v=20260724-1" type="video/mp4">';
-  hero.prepend(video);
+if (hero) {
+  let video = hero.querySelector('.hero-video');
+  if (!video) {
+    video = document.createElement('video');
+    video.className = 'hero-video';
+    video.autoplay = true;
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.preload = 'auto';
+    video.poster = 'assets/visuals/ibera_hero_background_v2_poster.jpg?v=20260730-5';
+    video.setAttribute('aria-hidden', 'true');
+    video.innerHTML = '<source src="assets/visuals/ibera_hero_background_v2_web.mp4?v=20260730-5" type="video/mp4">';
+    hero.prepend(video);
+  }
 
   const rotatingLine = hero.querySelector('h1 em');
   const cues = [
@@ -44,7 +47,7 @@ if (hero && !hero.querySelector('.hero-video')) {
     activeText = cue.text;
     rotatingLine.classList.remove('is-visible');
     window.setTimeout(() => {
-      rotatingLine.textContent = cue.text;
+      rotatingLine.textContent = window.IBERA_I18N?.translate(cue.text) || cue.text;
       rotatingLine.classList.add('is-visible');
     }, 120);
   };
@@ -59,7 +62,8 @@ if (hero && !hero.querySelector('.hero-video')) {
       video.pause();
       video.removeAttribute('autoplay');
       if (rotatingLine) {
-        rotatingLine.textContent = 'Before it closes.';
+        const fallback = 'Before it closes.';
+        rotatingLine.textContent = window.IBERA_I18N?.translate(fallback) || fallback;
         rotatingLine.classList.add('is-visible');
       }
     } else {
