@@ -1,112 +1,85 @@
-/* ÍBERA Systems v2.0 — authoritative digital lockup rendering */
-:root {
-  --ibera-paper: #F7F4ED;
-}
+/* ÍBERA Systems v2.0 — production digital lockup */
+:root { --ibera-paper: #F7F4ED; }
 
-/* The DOM may contain two technical assets, but they are rendered as one
-   fixed-proportion lockup matching the approved horizontal master. */
 .brand-lockup {
-  position: relative;
-  display: block;
-  width: 148px;
-  height: 56px;
-  flex: 0 0 148px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  width: auto;
+  height: 62px;
   color: var(--ibera-paper);
   text-decoration: none;
+  white-space: nowrap;
   overflow: visible;
 }
 
-.brand-lockup > * {
-  display: none !important;
-}
-
-.brand-lockup::before,
-.brand-lockup::after {
-  content: "";
-  position: absolute;
+.brand-lockup__mark,
+.brand-lockup__wordmark {
   display: block;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
+  flex: none;
+  object-fit: contain;
 }
 
-/* Exact rodete silhouette, recoloured for the dark digital surface. */
-.brand-lockup::before {
-  left: 0;
-  top: 2px;
-  width: 52px;
-  height: 52px;
-  background: var(--ibera-paper);
-  -webkit-mask: url("assets/brand/v2/favicon.svg?v=20260730-1") center / contain no-repeat;
-  mask: url("assets/brand/v2/favicon.svg?v=20260730-1") center / contain no-repeat;
+/* Detailed master rodete. The micro favicon is never used inside the lockup. */
+.brand-lockup__mark {
+  width: 60px;
+  height: 60px;
 }
 
 /* Approved curve-based ÍBERA / SYSTEMS wordmark. */
-.brand-lockup::after {
-  left: 64px;
-  top: 7px;
-  width: 84px;
-  height: 42px;
-  background-image: url("assets/brand/v2/IBERA_Horizontal_Inverse_v1.0.svg?v=20260730-1");
+.brand-lockup__wordmark {
+  width: 112px;
+  height: 56px;
 }
 
 .site-header .brand {
   display: flex;
-  width: 148px !important;
-  min-width: 148px;
-  height: 56px;
+  width: 186px !important;
+  min-width: 186px;
+  height: 64px;
   align-items: center;
   overflow: visible;
 }
 
 .site-header .brand .brand-lockup {
-  width: 148px;
-  height: 56px;
+  height: 62px;
 }
 
 .footer-brand {
   display: flex;
-  min-width: 172px;
+  min-width: 224px;
   align-items: flex-start;
 }
 
 .footer-brand .brand-lockup {
-  width: 172px;
+  height: 78px;
+  gap: 17px;
+}
+
+.footer-brand .brand-lockup__mark {
+  width: 76px;
+  height: 76px;
+}
+
+.footer-brand .brand-lockup__wordmark {
+  width: 131px;
   height: 66px;
-  flex-basis: 172px;
-}
-
-.footer-brand .brand-lockup::before {
-  top: 2px;
-  width: 62px;
-  height: 62px;
-}
-
-.footer-brand .brand-lockup::after {
-  left: 77px;
-  top: 9px;
-  width: 95px;
-  height: 48px;
 }
 
 .brand-lockup--about {
-  width: 260px;
-  height: 100px;
+  height: 116px;
   margin-top: 32px;
-  flex-basis: 260px;
+  gap: 24px;
 }
 
-.brand-lockup--about::before {
-  top: 2px;
-  width: 96px;
-  height: 96px;
+.brand-lockup--about .brand-lockup__mark {
+  width: 112px;
+  height: 112px;
 }
 
-.brand-lockup--about::after {
-  left: 120px;
-  top: 15px;
-  width: 140px;
-  height: 70px;
+.brand-lockup--about .brand-lockup__wordmark {
+  width: 184px;
+  height: 92px;
 }
 
 /* Static HTML fallback before JavaScript enhancement. */
@@ -120,61 +93,81 @@
 }
 
 @media (max-width: 1050px) {
-  .site-header .brand,
-  .site-header .brand .brand-lockup {
-    width: 140px !important;
-    min-width: 140px;
+  .site-header .brand {
+    width: 174px !important;
+    min-width: 174px;
+    height: 60px;
+  }
+
+  .site-header .brand-lockup {
+    height: 58px;
+    gap: 13px;
+  }
+
+  .site-header .brand-lockup__mark {
+    width: 56px;
+    height: 56px;
+  }
+
+  .site-header .brand-lockup__wordmark {
+    width: 105px;
     height: 52px;
-  }
-
-  .site-header .brand-lockup::before {
-    width: 48px;
-    height: 48px;
-  }
-
-  .site-header .brand-lockup::after {
-    left: 59px;
-    top: 7px;
-    width: 81px;
-    height: 40px;
   }
 }
 
 @media (max-width: 580px) {
-  .site-header .brand,
-  .site-header .brand .brand-lockup {
-    width: 132px !important;
-    min-width: 132px;
-    height: 48px;
+  .site-header .brand {
+    width: 164px !important;
+    min-width: 164px;
+    height: 58px;
   }
 
-  .site-header .brand-lockup::before {
-    top: 2px;
-    width: 44px;
-    height: 44px;
+  .site-header .brand-lockup {
+    height: 56px;
+    gap: 12px;
   }
 
-  .site-header .brand-lockup::after {
-    left: 54px;
-    top: 7px;
-    width: 78px;
-    height: 38px;
+  .site-header .brand-lockup__mark {
+    width: 54px;
+    height: 54px;
+  }
+
+  .site-header .brand-lockup__wordmark {
+    width: 98px;
+    height: 49px;
+  }
+
+  .footer-brand {
+    min-width: 196px;
+  }
+
+  .footer-brand .brand-lockup {
+    height: 70px;
+    gap: 15px;
+  }
+
+  .footer-brand .brand-lockup__mark {
+    width: 68px;
+    height: 68px;
+  }
+
+  .footer-brand .brand-lockup__wordmark {
+    width: 113px;
+    height: 57px;
   }
 
   .brand-lockup--about {
-    width: 224px;
-    height: 86px;
+    height: 98px;
+    gap: 19px;
   }
 
-  .brand-lockup--about::before {
-    width: 82px;
-    height: 82px;
+  .brand-lockup--about .brand-lockup__mark {
+    width: 94px;
+    height: 94px;
   }
 
-  .brand-lockup--about::after {
-    left: 102px;
-    top: 13px;
-    width: 122px;
-    height: 61px;
+  .brand-lockup--about .brand-lockup__wordmark {
+    width: 154px;
+    height: 77px;
   }
 }
