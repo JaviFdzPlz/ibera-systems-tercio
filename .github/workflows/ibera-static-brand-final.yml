@@ -1,0 +1,159 @@
+name: ÍBERA static brand finalization
+
+on:
+  push:
+    paths:
+      - .github/workflows/ibera-static-brand-final.yml
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Remove dynamic brand reconstruction
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          release = "20260730-3"
+
+          script_path = Path("script.js")
+          script = script_path.read_text(encoding="utf-8")
+          script = re.sub(
+              r"const BRAND_ASSETS = \{.*?(?=const toggle =)",
+              "",
+              script,
+              flags=re.S,
+          )
+          script = re.sub(r"identity-v2\.css\?v=[^'\"]+", f"identity-v2.css?v={release}", script)
+          script = re.sub(r"brand-hotfix\.css\?v=[^'\"]+", f"brand-hotfix.css?v={release}", script)
+          script_path.write_text(script, encoding="utf-8")
+
+          Path("brand-hotfix.css").write_text('''/* ÍBERA Systems v2.0 — static production lockup */
+.site-header .brand {
+  display: flex;
+  width: 190px !important;
+  min-width: 190px;
+  height: 64px;
+  align-items: center;
+  overflow: visible;
+}
+
+.site-header .brand > img {
+  display: block;
+  width: auto !important;
+  height: 56px !important;
+  max-width: 190px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: flex-start;
+  min-width: 230px;
+}
+
+.footer-brand > img {
+  display: block;
+  width: auto !important;
+  height: 82px !important;
+  max-width: 230px;
+  object-fit: contain;
+  object-position: left top;
+}
+
+.about-grid > div:first-child > img {
+  display: block;
+  width: auto !important;
+  height: 112px !important;
+  max-width: 280px;
+  margin-top: 32px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+@media (max-width: 1050px) {
+  .site-header .brand {
+    width: 178px !important;
+    min-width: 178px;
+    height: 60px;
+  }
+
+  .site-header .brand > img {
+    height: 52px !important;
+    max-width: 178px;
+  }
+}
+
+@media (max-width: 580px) {
+  .site-header .brand {
+    width: 168px !important;
+    min-width: 168px;
+    height: 58px;
+  }
+
+  .site-header .brand > img {
+    height: 50px !important;
+    max-width: 168px;
+  }
+
+  .footer-brand {
+    min-width: 205px;
+  }
+
+  .footer-brand > img {
+    height: 74px !important;
+    max-width: 205px;
+  }
+
+  .about-grid > div:first-child > img {
+    height: 96px !important;
+    max-width: 240px;
+  }
+}
+''', encoding="utf-8")
+
+          pages = [
+              Path("index.html"),
+              Path("urce.html"),
+              Path("gadir.html"),
+              Path("atala.html"),
+              Path("alano.html"),
+              Path("ardid.html"),
+          ]
+          for page in pages:
+              text = page.read_text(encoding="utf-8")
+              text = re.sub(
+                  r'assets/brand/v2/IBERA_Horizontal_Inverse_Web\.png(?:\?v=[^"\']+)?',
+                  f'assets/brand/v2/IBERA_Horizontal_Inverse_Web.png?v={release}',
+                  text,
+              )
+              text = re.sub(
+                  r'assets/brand/v2/favicon-64x64\.png(?:\?v=[^"\']+)?',
+                  f'assets/brand/v2/favicon-64x64.png?v={release}',
+                  text,
+              )
+              text = re.sub(
+                  r'script\.js(?:\?v=[^"\']+)?',
+                  f'script.js?v={release}',
+                  text,
+              )
+              page.write_text(text, encoding="utf-8")
+
+          Path(".github/workflows/ibera-static-brand-final.yml").unlink()
+
+      - name: Commit final static brand implementation
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add script.js brand-hotfix.css index.html urce.html gadir.html atala.html alano.html ardid.html .github/workflows/ibera-static-brand-final.yml
+          git commit -m "Use complete static ÍBERA lockup across production"
+          git push
