@@ -1,6 +1,6 @@
 (() => {
   const supported = ['en', 'es', 'fr', 'uk'];
-  const labels = { en: 'EN', es: 'ES', fr: 'FR', uk: 'UK' };
+  const labels = { en: 'EN', es: 'ES', fr: 'FR', uk: 'UA' };
   const names = {
     en: 'English',
     es: 'Español',
