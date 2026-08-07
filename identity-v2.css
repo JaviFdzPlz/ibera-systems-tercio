@@ -298,22 +298,22 @@ footer span { color: var(--copper); }
   box-shadow: none;
 }
 .mvp-card:before { background: var(--olive); opacity: .75; }
-.mvp-card.lead,
-.mvp-detail.lead,
+.mvp-card.near-term,
+.mvp-detail.near-term,
 .pathway-cards .dark-card {
   border-color: var(--copper);
   background: var(--charcoal);
   color: var(--paper);
 }
-.mvp-card.lead:before { background: var(--copper); }
+.mvp-card.near-term:before { background: var(--copper); }
 .mvp-card p,
 .mvp-detail p,
 .pathway-cards p,
 .legal-grid p,
 .needs-grid p { color: var(--muted-ink); }
-.mvp-card.lead p,
-.mvp-detail.lead p,
-.mvp-detail.lead small,
+.mvp-card.near-term p,
+.mvp-detail.near-term p,
+.mvp-detail.near-term small,
 .pathway-cards .dark-card p { color: rgba(247,244,237,.70); }
 .mvp-pathway-card:hover,
 .mvp-pathway-card:focus-visible { border-color: var(--copper); box-shadow: var(--shadow-soft); }
