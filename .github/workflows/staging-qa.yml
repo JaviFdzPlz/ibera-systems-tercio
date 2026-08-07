@@ -1,0 +1,78 @@
+name: Staging QA checks
+
+on:
+  pull_request:
+    branches:
+      - "staging/**"
+  push:
+    branches:
+      - "staging/**"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  qa:
+    name: Links, browser smoke, accessibility, Lighthouse
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Static internal link/anchor and asset check
+        run: python3 .github/qa/link_check.py .
+
+      - name: Install QA dependencies (pinned)
+        run: |
+          npm init -y >/dev/null
+          npm install --no-save @playwright/test@1.62.1 @axe-core/playwright@4.10.2 lighthouse@12.8.2
+          npx playwright install --with-deps chromium
+
+      - name: Serve site locally
+        run: |
+          python3 -m http.server 8080 &
+          echo $! > server.pid
+          for i in $(seq 1 20); do
+            curl -sf http://localhost:8080/index.html >/dev/null && break
+            sleep 0.5
+          done
+
+      - name: Browser render smoke test (desktop + mobile, all pages)
+        run: node .github/qa/smoke.js
+
+      - name: Accessibility check (axe-core)
+        run: node .github/qa/axe-check.js
+
+      - name: Lighthouse (desktop, homepage + one system page)
+        run: |
+          mkdir -p lighthouse-reports
+          npx lighthouse http://localhost:8080/index.html \
+            --output=json --output=html \
+            --output-path=lighthouse-reports/index \
+            --chrome-flags="--headless=new --no-sandbox" \
+            --only-categories=accessibility,best-practices,seo,performance \
+            --quiet || echo "Lighthouse run failed or scored below default thresholds; see report artifact."
+          npx lighthouse http://localhost:8080/urce.html \
+            --output=json --output=html \
+            --output-path=lighthouse-reports/urce \
+            --chrome-flags="--headless=new --no-sandbox" \
+            --only-categories=accessibility,best-practices,seo,performance \
+            --quiet || true
+
+      - name: Stop local server
+        if: always()
+        run: kill "$(cat server.pid)" 2>/dev/null || true
+
+      - name: Upload Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-reports
+          path: lighthouse-reports
+          if-no-files-found: warn
