@@ -50,6 +50,7 @@ jobs:
         run: node .github/qa/axe-check.js
 
       - name: Lighthouse (desktop, homepage + one system page)
+        if: always()
         run: |
           mkdir -p lighthouse-reports
           npx lighthouse http://localhost:8080/index.html \
