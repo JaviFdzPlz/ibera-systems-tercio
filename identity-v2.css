@@ -165,8 +165,6 @@ h2 em {
   border: 1px solid rgba(247,244,237,.13);
   background: rgba(25,25,25,.52);
 }
-.hero-system { display: none !important; }
-
 /* Buttons */
 .button {
   border-radius: var(--radius);
