@@ -9,7 +9,8 @@ const FAIL_ON_IMPACT = ['serious', 'critical'];
 
 (async () => {
   const browser = await chromium.launch();
-  const ctx = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+  const context = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+  const ctx = await context.newPage();
   let hasFailure = false;
   const summary = [];
 
