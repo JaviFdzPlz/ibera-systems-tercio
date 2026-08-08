@@ -66,6 +66,35 @@ jobs:
             --only-categories=accessibility,best-practices,seo,performance \
             --quiet || true
 
+      - name: Print Lighthouse category scores (log-visible evidence)
+        if: always()
+        run: |
+          node -e '
+          const fs = require("fs");
+          const pages = ["index", "urce"];
+          for (const page of pages) {
+            const path = `lighthouse-reports/${page}.report.json`;
+            if (!fs.existsSync(path)) {
+              console.log(`[lighthouse] ${page}: report.json not found (Lighthouse run failed or was skipped)`);
+              continue;
+            }
+            let report;
+            try {
+              report = JSON.parse(fs.readFileSync(path, "utf8"));
+            } catch (err) {
+              console.log(`[lighthouse] ${page}: failed to parse report.json (${err.message})`);
+              continue;
+            }
+            const cats = report.categories || {};
+            const parts = Object.keys(cats).map((key) => {
+              const score = cats[key].score;
+              const pct = score == null ? "n/a" : Math.round(score * 100);
+              return `${cats[key].title || key}=${pct}`;
+            });
+            console.log(`[lighthouse] ${page}: ${parts.join(", ")}`);
+          }
+          '
+
       - name: Stop local server
         if: always()
         run: kill "$(cat server.pid)" 2>/dev/null || true
