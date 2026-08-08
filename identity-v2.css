@@ -18,6 +18,14 @@
   --max: 1180px;
   --radius: 2px;
   --shadow-soft: 0 20px 54px rgba(45,45,45,.10);
+
+  /* WORKING — staging-only AA contrast aliases (G2-WEB-002B). Both values are
+     already-approved palette values (--copper-dark; #D49A63 used elsewhere by
+     .layer-card b / .card-explore / .back-link) — no new brand colors. Used
+     wherever the flat --copper token was applied to small/label text and
+     failed WCAG AA color-contrast against its actual light or dark surface. */
+  --copper-on-light: var(--copper-dark);
+  --copper-on-dark: #D49A63;
 }
 
 html { scroll-padding-top: 84px; }
@@ -133,9 +141,15 @@ a, button { -webkit-tap-highlight-color: transparent; }
 .eyebrow,
 .section-number,
 .micro-label {
-  color: var(--copper);
+  color: var(--copper-on-light);
   font-weight: 700;
   letter-spacing: .19em;
+}
+/* Same labels, but rendered on a dark card/surface: use the on-dark variant. */
+.mvp-card.near-term .micro-label,
+.mvp-detail.near-term .micro-label,
+.pathway-cards .dark-card .micro-label {
+  color: var(--copper-on-dark);
 }
 .hero h1 {
   max-width: 900px;
@@ -235,7 +249,11 @@ footer { background: var(--charcoal); color: var(--paper); }
 .status-card span,
 .question-card span,
 .needs-grid span,
-footer span { color: var(--copper); }
+footer span { color: var(--copper-on-light); }
+/* Same accent labels, but on a dark surface: use the on-dark variant. */
+footer span,
+.status-card span,
+.pathway-cards .dark-card span { color: var(--copper-on-dark); }
 
 /* TERCIO architecture */
 .tercio-umbrella-card {
@@ -332,7 +350,7 @@ footer span { color: var(--copper); }
   border-color: var(--line);
   background: rgba(255,252,246,.62);
 }
-.pathway-rule strong { color: var(--copper); }
+.pathway-rule strong { color: var(--copper-on-light); }
 
 /* Evidence, partners, about */
 .status-card {
@@ -347,7 +365,9 @@ footer span { color: var(--copper); }
   border-color: var(--line);
   background: #FFFCF6;
 }
-.evidence-list strong { color: var(--copper); }
+.evidence-list strong { color: var(--copper-on-dark); }
+/* Evidence tiles flip to a light card background inside a light capability section. */
+.capability-section.light .evidence-list strong { color: var(--copper-on-light); }
 .about-grid { grid-template-columns: .7fr 1.5fr; }
 .about-grid img {
   width: min(100%, 420px);
