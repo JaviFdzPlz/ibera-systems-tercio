@@ -1,5 +1,6 @@
 name: MILLARES release gate
 
+# Launch gate rerun after compatibility fixes.
 on:
   pull_request:
   push:
