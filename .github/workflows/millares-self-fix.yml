@@ -1,0 +1,42 @@
+name: MILLARES launch compatibility fix
+
+on:
+  push:
+    paths:
+      - .github/workflows/millares-self-fix.yml
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply compatibility and accessibility fixes
+        shell: python
+        run: |
+          from pathlib import Path
+
+          css_path = Path('styles.css')
+          css = css_path.read_text(encoding='utf-8')
+          css = css.replace('opacity: calc(var(--o) * .72);', 'opacity: var(--o);')
+          css = css.replace('inset-left: 38%;', 'left: 38%;')
+          css_path.write_text(css, encoding='utf-8')
+
+          js_path = Path('script.js')
+          js = js_path.read_text(encoding='utf-8')
+          needle = "    nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));\n"
+          replacement = needle + "    document.addEventListener('keydown', (event) => {\n      if (event.key === 'Escape' && menuButton.getAttribute('aria-expanded') === 'true') {\n        closeMenu();\n        menuButton.focus();\n      }\n    });\n"
+          if needle in js and "event.key === 'Escape'" not in js:
+              js = js.replace(needle, replacement)
+          js_path.write_text(js, encoding='utf-8')
+
+          Path('.github/workflows/millares-self-fix.yml').unlink()
+      - name: Commit compatibility fixes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add styles.css script.js .github/workflows/millares-self-fix.yml
+          git commit -m "fix: clear MILLARES launch compatibility gate"
+          git push
