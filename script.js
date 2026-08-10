@@ -1,135 +1,86 @@
-const toggle = document.querySelector('.menu-toggle');
-const nav = document.querySelector('#primary-nav');
+(() => {
+  const menuButton = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('.primary-nav');
 
-toggle?.addEventListener('click', () => {
-  const open = nav.classList.toggle('open');
-  toggle.setAttribute('aria-expanded', String(open));
-});
+  if (menuButton && nav) {
+    const closeMenu = () => {
+      menuButton.setAttribute('aria-expanded', 'false');
+      nav.classList.remove('is-open');
+    };
 
-nav?.querySelectorAll('a').forEach((link) => {
-  link.addEventListener('click', () => {
-    nav.classList.remove('open');
-    toggle?.setAttribute('aria-expanded', 'false');
-  });
-});
+    menuButton.addEventListener('click', () => {
+      const open = menuButton.getAttribute('aria-expanded') === 'true';
+      menuButton.setAttribute('aria-expanded', String(!open));
+      nav.classList.toggle('is-open', !open);
+    });
 
-const hero = document.querySelector('.hero');
-if (hero) {
-  let video = hero.querySelector('.hero-video');
-  if (!video) {
-    video = document.createElement('video');
-    video.className = 'hero-video';
-    video.autoplay = true;
-    video.muted = true;
-    video.loop = true;
-    video.playsInline = true;
-    video.preload = 'auto';
-    video.poster = 'assets/visuals/ibera_hero_background_v2_poster.jpg?v=20260730-5';
-    video.setAttribute('aria-hidden', 'true');
-    video.innerHTML = '<source src="assets/visuals/ibera_hero_background_v2_web.mp4?v=20260730-5" type="video/mp4">';
-    hero.prepend(video);
+    nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 760) closeMenu();
+    });
   }
 
-  const rotatingLine = hero.querySelector('h1 em');
-  const cues = [
-    { start: 0, end: 3.4, text: 'Before detection.' },
-    { start: 3.4, end: 6.6, text: 'Before targeting.' },
-    { start: 6.6, end: 9.7, text: 'Before commitment.' },
-    { start: 9.7, end: 13.5, text: 'Preserve the mission.' }
-  ];
-  let activeText = '';
+  const field = document.querySelector('.evolving-field');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  const updateCue = () => {
-    if (!rotatingLine) return;
-    const time = video.currentTime || 0;
-    const cue = cues.find((item) => time >= item.start && time < item.end) || cues[0];
-    if (cue.text === activeText) return;
-    activeText = cue.text;
-    rotatingLine.classList.remove('is-visible');
-    window.setTimeout(() => {
-      rotatingLine.textContent = window.IBERA_I18N?.translate(cue.text) || cue.text;
-      rotatingLine.classList.add('is-visible');
-    }, 120);
-  };
+  if (field) {
+    const renderField = () => {
+      field.replaceChildren();
+      const width = field.clientWidth || window.innerWidth * 0.55;
+      const height = field.clientHeight || window.innerHeight;
+      const compact = window.innerWidth < 760;
+      const cols = compact ? 10 : 15;
+      const rows = compact ? 10 : 12;
+      const cx = compact ? 72 : 58;
+      const cy = 55;
 
-  video.addEventListener('loadedmetadata', updateCue);
-  video.addEventListener('timeupdate', updateCue);
-  video.play().catch(() => hero.classList.add('hero-video-paused'));
+      for (let row = 0; row < rows; row += 1) {
+        for (let col = 0; col < cols; col += 1) {
+          const x = 4 + (col / Math.max(1, cols - 1)) * 92;
+          const y = 4 + (row / Math.max(1, rows - 1)) * 92;
+          const dx = x - cx;
+          const dy = y - cy;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          const angle = Math.atan2(dy, dx) * 180 / Math.PI + 92 + dist * 0.78;
+          const falloff = Math.max(0.12, 1 - dist / 82);
+          const ripple = 0.76 + 0.34 * Math.sin((row + col) * 0.72);
 
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const applyMotionPreference = () => {
-    if (reducedMotion.matches) {
-      video.pause();
-      video.removeAttribute('autoplay');
-      if (rotatingLine) {
-        const fallback = 'Before it closes.';
-        rotatingLine.textContent = window.IBERA_I18N?.translate(fallback) || fallback;
-        rotatingLine.classList.add('is-visible');
+          const unit = document.createElement('span');
+          unit.className = 'field-unit';
+          unit.style.setProperty('--x', `${x.toFixed(2)}%`);
+          unit.style.setProperty('--y', `${y.toFixed(2)}%`);
+          unit.style.setProperty('--r', `${angle.toFixed(2)}deg`);
+          unit.style.setProperty('--s', `${(0.58 + falloff * 0.78).toFixed(2)}`);
+          unit.style.setProperty('--o', `${Math.min(0.78, 0.16 + falloff * 0.62 * ripple).toFixed(2)}`);
+          unit.style.setProperty('--d', `${(-((row * cols + col) % 23) * 0.17).toFixed(2)}s`);
+          field.appendChild(unit);
+        }
       }
-    } else {
-      video.play().catch(() => {});
-    }
-  };
 
-  applyMotionPreference();
-  reducedMotion.addEventListener?.('change', applyMotionPreference);
-}
+      field.dataset.geometry = `${Math.round(width)}x${Math.round(height)}`;
+    };
 
-const tercioSection = document.querySelector('#tercio');
-if (tercioSection && !document.querySelector('.operational-context-visual')) {
-  const transition = document.createElement('section');
-  transition.className = 'operational-context-transition';
-  transition.setAttribute('aria-label', 'Representative operational context');
-  transition.innerHTML = '<figure class="container operational-context-visual"><img src="assets/visuals/gadir-operational-context.jpg" alt="Conceptual passive position-survivability architecture in a representative wooded environment" width="1439" height="810" loading="lazy"><figcaption><span>Operational context concept — not test evidence</span><small>Passive position-survivability architecture in a representative wooded environment.</small></figcaption></figure>';
-  tercioSection.before(transition);
-}
-
-if (tercioSection) {
-  const layerGrid = tercioSection.querySelector('.layers-grid');
-
-  if (layerGrid && !tercioSection.querySelector('.tercio-umbrella-card')) {
-    const umbrella = document.createElement('a');
-    umbrella.className = 'container tercio-umbrella-card';
-    umbrella.href = '#demonstrators';
-    umbrella.innerHTML = '<div><span>TERCIO / SYSTEM OF SYSTEMS</span><h3>Five standalone-capable layers.<br>One evidence-gated architecture.</h3><p>Condition · Conceal · Detect · Extend · React · Deceive · Protect</p></div><strong>Explore the architecture →</strong>';
-    layerGrid.before(umbrella);
+    renderField();
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(renderField, 160);
+    });
   }
 
-  const routes = {
-    URCE: 'urce.html',
-    GADIR: 'gadir.html',
-    ATALA: 'atala.html',
-    ALANO: 'alano.html',
-    ARDID: 'ardid.html'
-  };
-  const descriptions = {
-    ALANO: 'Attritable forward, remote or mobile nodes that extend sensing, cueing, relay and selected local non-kinetic response functions.',
-    ARDID: 'Coordinated deception and perception shaping that creates false signatures, alternate cues and ambiguity before target commitment.'
-  };
+  if (!reduceMotion && 'IntersectionObserver' in window) {
+    const targets = document.querySelectorAll('.split-intro, .tempo-strip, .response-loop, .engineering-destination, .repeat-panel, .section-heading-wide, .protection-grid, .evidence-grid, .open-questions, .about-grid, .principles, .work-grid');
+    targets.forEach((target) => target.classList.add('reveal'));
 
-  tercioSection.querySelectorAll('.layer-card').forEach((card) => {
-    const name = card.querySelector('h3')?.textContent?.trim();
-    if (!name || card.closest('a')) return;
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
 
-    const description = card.querySelector('p');
-    if (description && descriptions[name]) description.textContent = descriptions[name];
-
-    const link = document.createElement('a');
-    link.className = 'layer-card-link';
-    link.href = routes[name] || '#demonstrators';
-    card.replaceWith(link);
-    link.append(card);
-
-    const hint = document.createElement('span');
-    hint.className = 'card-explore';
-    hint.textContent = 'Explore system →';
-    card.append(hint);
-  });
-
-  if (!document.querySelector('.system-concept-visual')) {
-    const figure = document.createElement('figure');
-    figure.className = 'container system-concept-visual';
-    figure.innerHTML = '<img src="assets/visuals/tercio-integrated-concept.jpg" alt="Concept render illustrating the interaction of TERCIO survivability capabilities" width="1439" height="810" loading="lazy"><figcaption class="concept-caption">Integrated architecture concept — not a fielded configuration<span>Illustrative interaction of signature management, warning, distributed geometry, local response and deception.</span></figcaption>';
-    layerGrid?.after(figure);
+    targets.forEach((target) => observer.observe(target));
   }
-}
+})();
