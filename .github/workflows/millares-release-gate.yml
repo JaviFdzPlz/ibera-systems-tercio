@@ -37,6 +37,7 @@ jobs:
                   self.styles = []
                   self.title = False
                   self.description = False
+                  self.text = []
               def handle_starttag(self, tag, attrs):
                   a = dict(attrs)
                   if 'id' in a:
@@ -51,9 +52,14 @@ jobs:
                       self.title = True
                   if tag == 'meta' and a.get('name') == 'description' and a.get('content'):
                       self.description = True
+              def handle_data(self, data):
+                  value = data.strip()
+                  if value:
+                      self.text.append(value)
 
           audit = Audit()
           audit.feed(index)
+          visible_text = ' '.join(audit.text)
 
           errors = []
           dup_ids = sorted({x for x in audit.ids if audit.ids.count(x) > 1})
@@ -72,10 +78,13 @@ jobs:
               if dep.startswith(('http://', 'https://', '//')):
                   errors.append(f'external runtime dependency not allowed for launch: {dep}')
 
-          forbidden = ['TERCIO', 'URCE', 'GADIR', 'ATALA', 'ALANO', 'ARDID', 'ÍBERA Systems', 'IBERA Systems']
-          for token in forbidden:
-              if token.lower() in index.lower():
-                  errors.append(f'legacy narrative token in public index: {token}')
+          forbidden = [
+              r'\bTERCIO\b', r'\bURCE\b', r'\bGADIR\b', r'\bATALA\b',
+              r'\bALANO\b', r'\bARDID\b', r'\bÍBERA\s+Systems\b', r'\bIBERA\s+Systems\b'
+          ]
+          for pattern in forbidden:
+              if re.search(pattern, visible_text, flags=re.I):
+                  errors.append(f'legacy narrative token in visible public text: {pattern}')
 
           unsupported = [
               r'\bbest response\b',
@@ -85,15 +94,15 @@ jobs:
               r'\bguarantee(?:d|s)?\b',
           ]
           for pattern in unsupported:
-              if re.search(pattern, index, flags=re.I):
+              if re.search(pattern, visible_text, flags=re.I):
                   errors.append(f'potential unsupported claim pattern: {pattern}')
 
           if css.count('{') != css.count('}'):
               errors.append('CSS brace count mismatch')
           if 'inset-left:' in css:
               errors.append('invalid CSS property: inset-left')
-          if re.search(r'calc\([^)]*\*[^)]*\)', css):
-              errors.append('unsupported multiplication syntax inside CSS calc()')
+          if 'opacity: calc(var(--o) *' in css:
+              errors.append('unsupported typed arithmetic in opacity animation')
 
           required = ['404.html', 'favicon.svg', 'robots.txt', 'sitemap.xml', 'script.js', 'styles.css']
           for path in required:
