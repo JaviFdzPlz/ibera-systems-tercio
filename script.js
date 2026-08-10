@@ -15,6 +15,12 @@
     });
 
     nav.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && menuButton.getAttribute('aria-expanded') === 'true') {
+        closeMenu();
+        menuButton.focus();
+      }
+    });
     window.addEventListener('resize', () => {
       if (window.innerWidth > 760) closeMenu();
     });
