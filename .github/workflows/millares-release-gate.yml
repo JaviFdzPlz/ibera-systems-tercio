@@ -1,0 +1,119 @@
+name: MILLARES release gate
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - 'launch/**'
+
+permissions:
+  contents: read
+
+jobs:
+  static-gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: HTML, links, claims and legacy-route checks
+        shell: python
+        run: |
+          from html.parser import HTMLParser
+          from pathlib import Path
+          import re
+          import sys
+
+          root = Path('.')
+          index = (root / 'index.html').read_text(encoding='utf-8')
+          css = (root / 'styles.css').read_text(encoding='utf-8')
+
+          class Audit(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.ids = []
+                  self.hrefs = []
+                  self.scripts = []
+                  self.styles = []
+                  self.title = False
+                  self.description = False
+              def handle_starttag(self, tag, attrs):
+                  a = dict(attrs)
+                  if 'id' in a:
+                      self.ids.append(a['id'])
+                  if tag == 'a' and 'href' in a:
+                      self.hrefs.append(a['href'])
+                  if tag == 'script' and 'src' in a:
+                      self.scripts.append(a['src'])
+                  if tag == 'link' and a.get('rel') == 'stylesheet':
+                      self.styles.append(a.get('href', ''))
+                  if tag == 'title':
+                      self.title = True
+                  if tag == 'meta' and a.get('name') == 'description' and a.get('content'):
+                      self.description = True
+
+          audit = Audit()
+          audit.feed(index)
+
+          errors = []
+          dup_ids = sorted({x for x in audit.ids if audit.ids.count(x) > 1})
+          if dup_ids:
+              errors.append(f'duplicate ids: {dup_ids}')
+
+          ids = set(audit.ids)
+          for href in audit.hrefs:
+              if href.startswith('#') and href[1:] not in ids:
+                  errors.append(f'broken anchor: {href}')
+
+          if not audit.title or not audit.description:
+              errors.append('missing title or meta description')
+
+          for dep in audit.scripts + audit.styles:
+              if dep.startswith(('http://', 'https://', '//')):
+                  errors.append(f'external runtime dependency not allowed for launch: {dep}')
+
+          forbidden = ['TERCIO', 'URCE', 'GADIR', 'ATALA', 'ALANO', 'ARDID', 'ÍBERA Systems', 'IBERA Systems']
+          for token in forbidden:
+              if token.lower() in index.lower():
+                  errors.append(f'legacy narrative token in public index: {token}')
+
+          unsupported = [
+              r'\bbest response\b',
+              r'\balways (?:protect|keeps?|adapts?)\b',
+              r'\bcombat[- ]proven\b',
+              r'\bfielded capability\b',
+              r'\bguarantee(?:d|s)?\b',
+          ]
+          for pattern in unsupported:
+              if re.search(pattern, index, flags=re.I):
+                  errors.append(f'potential unsupported claim pattern: {pattern}')
+
+          if css.count('{') != css.count('}'):
+              errors.append('CSS brace count mismatch')
+          if 'inset-left:' in css:
+              errors.append('invalid CSS property: inset-left')
+          if re.search(r'calc\([^)]*\*[^)]*\)', css):
+              errors.append('unsupported multiplication syntax inside CSS calc()')
+
+          required = ['404.html', 'favicon.svg', 'robots.txt', 'sitemap.xml', 'script.js', 'styles.css']
+          for path in required:
+              if not (root / path).exists():
+                  errors.append(f'missing required file: {path}')
+
+          legacy = ['urce.html', 'gadir.html', 'atala.html', 'alano.html', 'ardid.html']
+          for path in legacy:
+              text = (root / path).read_text(encoding='utf-8')
+              if 'noindex' not in text.lower() or "location.replace('./')" not in text:
+                  errors.append(f'legacy route is not controlled return page: {path}')
+
+          if errors:
+              print('RELEASE GATE FAIL')
+              for error in errors:
+                  print(f'- {error}')
+              sys.exit(1)
+
+          print('RELEASE GATE PASS')
+          print(f'IDs: {len(ids)} | internal links: {sum(h.startswith("#") for h in audit.hrefs)}')
+
+      - name: JavaScript syntax
+        run: node --check script.js
