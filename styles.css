@@ -436,8 +436,8 @@ h3 {
   letter-spacing: .035em;
 }
 .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 90px; align-items: start; }
-.work-grid .section-kicker { color: #23160f; opacity: .72; }
-.work-grid .prose p { opacity: .78; }
+.work-grid .section-kicker { color: #100e0c; opacity: 1; }
+.work-grid .prose p { color: #100e0c; opacity: 1; }
 
 .site-footer { padding: 64px 0 26px; background: #070706; color: var(--bone); }
 .footer-grid { display: grid; grid-template-columns: 1.25fr .85fr .7fr; gap: 60px; }
