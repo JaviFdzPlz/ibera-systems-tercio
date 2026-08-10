@@ -178,7 +178,7 @@ button, input, textarea, select { font: inherit; }
   animation-delay: var(--d);
 }
 @keyframes field-pulse {
-  from { filter: brightness(.78); opacity: calc(var(--o) * .72); }
+  from { filter: brightness(.78); }
   to { filter: brightness(1.12); opacity: var(--o); }
 }
 .hero-shell {
@@ -465,7 +465,7 @@ h3 {
   .hero-shell { grid-template-columns: 1fr; gap: 34px; align-content: center; }
   .hero-copy { max-width: 820px; }
   .hero-aside { max-width: 620px; }
-  .evolving-field { inset-left: 38%; opacity: .58; }
+  .evolving-field { left: 38%; opacity: .58; }
   .split-intro,
   .engineering-destination,
   .about-grid,
