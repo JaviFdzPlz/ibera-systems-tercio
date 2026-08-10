@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://javifdzplz.github.io/ibera-systems-tercio/sitemap.xml
