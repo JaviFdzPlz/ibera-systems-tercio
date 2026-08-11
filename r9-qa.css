@@ -1,0 +1,11 @@
+/* R9 implementation QA hotfix — no design-direction change.
+   Keep the mobile editorial response rail inside the viewport while preserving
+   the agreed 34px left-rail offset. */
+
+@media (max-width: 920px) {
+  .response-rail {
+    width: calc(var(--shell) - 34px);
+    margin-left: calc((100vw - var(--shell)) / 2 + 34px);
+    margin-right: auto;
+  }
+}
