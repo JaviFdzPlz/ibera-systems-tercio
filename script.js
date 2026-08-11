@@ -11,6 +11,7 @@
 
   ensureSheet('r8.css?v=20260811-1', 'millares-r8');
   ensureSheet('r9.css?v=20260811-1', 'millares-r9');
+  ensureSheet('r9-qa.css?v=20260811-1', 'millares-r9-qa');
 
   const menuButton = document.querySelector('.menu-toggle');
   const nav = document.querySelector('.primary-nav');
