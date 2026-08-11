@@ -1,4 +1,14 @@
 (() => {
+  // R8 is a reversible working candidate layered over the production stylesheet.
+  // Keep the overrides isolated until the refinement is accepted or rejected.
+  if (!document.querySelector('link[data-millares-r8]')) {
+    const r8Sheet = document.createElement('link');
+    r8Sheet.rel = 'stylesheet';
+    r8Sheet.href = 'r8.css?v=20260811-1';
+    r8Sheet.dataset.millaresR8 = 'true';
+    document.head.appendChild(r8Sheet);
+  }
+
   const menuButton = document.querySelector('.menu-toggle');
   const nav = document.querySelector('.primary-nav');
 

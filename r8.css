@@ -1,0 +1,66 @@
+/* MILLARES R8 refinement-specific layout/contrast overrides.
+   Working public candidate only; loaded after the production stylesheet. */
+
+/* The R8 How section reuses components originally designed for dark surfaces. */
+#approach .engineering-destination {
+  border-top-color: var(--line-light);
+}
+
+#approach .repeat-panel {
+  border-color: rgba(127, 74, 49, .42);
+  background: linear-gradient(120deg, rgba(181, 111, 70, .12), rgba(181, 111, 70, .025));
+  color: var(--ink);
+}
+
+#approach .repeat-panel p {
+  color: var(--muted-light);
+}
+
+#approach .repeat-panel strong {
+  color: var(--ink);
+}
+
+#approach .repeat-mark {
+  color: var(--copper-dark);
+  border-color: rgba(127, 74, 49, .38);
+}
+
+/* The prior open-questions grid expected a list. R8 turns it into a bounded
+   discovery snapshot, so give it a document-like reading measure instead. */
+#approach .open-questions {
+  display: block;
+  max-width: 980px;
+  margin-top: 74px;
+  padding-top: 48px;
+  border-top-color: var(--line-light);
+}
+
+#approach .open-questions h3 {
+  max-width: 880px;
+  margin-bottom: 22px;
+  font-size: clamp(28px, 3.1vw, 46px);
+  line-height: 1.05;
+}
+
+#approach .open-questions > p:not(.section-kicker) {
+  max-width: 850px;
+  margin: 0 0 16px;
+  color: var(--muted-light);
+  font-size: 16px;
+}
+
+#approach .open-questions > p:last-child {
+  color: var(--ink);
+}
+
+/* Scope rail is now correctly subordinate to What, not the hero. */
+#what .scope-rail {
+  margin-top: 72px;
+}
+
+@media (max-width: 760px) {
+  #approach .open-questions {
+    margin-top: 56px;
+    padding-top: 36px;
+  }
+}
