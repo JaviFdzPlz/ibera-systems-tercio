@@ -17,7 +17,9 @@
   <meta name="twitter:description" content="Start with the threat. Engineer the response. Repeat.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css?v=20260810-1">
-  <script src="script.js?v=20260810-1" defer></script>
+  <link rel="stylesheet" href="r8.css?v=20260811-1">
+  <link rel="stylesheet" href="r9.css?v=20260811-1">
+  <script src="script.js?v=20260811-r9-1" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -37,12 +39,52 @@
         <a class="nav-cta" href="#work">Work with us</a>
       </nav>
     </div>
+    <div class="document-index" aria-hidden="true">
+      <span data-index-section="about"></span>
+      <span data-index-section="why"></span>
+      <span data-index-section="what"></span>
+      <span data-index-section="approach"></span>
+      <span data-index-section="work"></span>
+    </div>
   </header>
 
   <main id="main">
     <section class="hero section-dark" aria-labelledby="hero-title">
-      <div class="evolving-field" aria-hidden="true"></div>
       <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-trt" aria-hidden="true">
+        <svg viewBox="0 0 760 720" role="presentation" focusable="false" preserveAspectRatio="xMidYMid meet">
+          <g class="trt-threat">
+            <path d="M86 118 L176 86 L242 142 L314 104 L368 174" />
+            <path d="M106 212 L194 180 L266 238 L328 202" />
+            <path d="M146 306 L224 268 L286 316" />
+          </g>
+          <g class="trt-challenge">
+            <path d="M368 174 L430 174" />
+            <path d="M328 202 L404 202" />
+            <path d="M286 316 L382 316" />
+            <path class="trt-branch" d="M404 202 L448 244 L494 244" />
+          </g>
+          <g class="trt-lag">
+            <path d="M430 174 L478 174" />
+            <path d="M510 174 L548 174" />
+          </g>
+          <g class="trt-response">
+            <path d="M548 174 L642 174 L642 268 L566 268 L566 366 L646 366" />
+            <path d="M494 244 L566 244" />
+            <path d="M382 316 L470 316 L470 366 L566 366" />
+          </g>
+          <rect class="trt-commit" x="558" y="257" width="17" height="17" />
+          <path class="trt-return" d="M646 366 L646 510 L518 510 L518 454 L426 454 L426 404" />
+          <path class="trt-return-arrow" d="M415 420 L426 404 L438 420" />
+          <g class="trt-labels">
+            <text x="88" y="92">CHANGE</text>
+            <text x="374" y="154">CHALLENGE</text>
+            <text x="484" y="154">LAG</text>
+            <text x="585" y="154">COMMIT</text>
+            <text x="440" y="546">REASSESS</text>
+          </g>
+        </svg>
+      </div>
       <div class="shell hero-shell">
         <div class="hero-copy">
           <p class="eyebrow">Defence engineering for a changing battlefield</p>
@@ -67,42 +109,73 @@
     </section>
 
     <section class="section-light section-major" id="about" aria-labelledby="about-title">
-      <div class="shell split-intro">
-        <div>
+      <div class="shell r9-section-grid">
+        <div class="r9-section-heading">
           <p class="section-kicker">01 / About</p>
           <h2 id="about-title">Defence research and engineering for a moving protection problem.</h2>
         </div>
-        <div class="prose prose-large">
-          <p>MILLARES is a defence research and engineering initiative focused on protective problems whose threat picture, evidence and operating conditions can change while an engineering response is still being developed.</p>
-          <p>We bring together established science, engineering, systems thinking, operational knowledge, modelling, simulation, experimentation and computation as the problem requires. Analysis supports the work; accountable engineering decisions remain the destination.</p>
-          <p>The form of a response is not fixed in advance. It may ultimately be a system, an adaptation, an integration, a service or another engineered response when the case justifies it.</p>
+        <div class="constraint-stack" aria-label="MILLARES working boundary">
+          <article>
+            <span class="r9-micro">Moving problem</span>
+            <p>The threat picture, evidence and operating conditions can change while an engineering response is still being developed.</p>
+          </article>
+          <article>
+            <span class="r9-micro">Multiple inputs</span>
+            <p>Science, engineering, systems thinking, operational knowledge, modelling, simulation, experimentation and computation are brought in as the problem requires.</p>
+          </article>
+          <article>
+            <span class="r9-micro">Engineering destination</span>
+            <p>Analysis supports the work. Accountable engineering decisions remain the destination.</p>
+          </article>
+          <article>
+            <span class="r9-micro">Form not fixed in advance</span>
+            <p>The response may ultimately be a system, adaptation, integration, service or another engineered response when the case justifies it.</p>
+          </article>
         </div>
       </div>
     </section>
 
     <section class="section-bone section-major" id="why" aria-labelledby="why-title">
-      <div class="shell split-intro">
-        <div>
+      <div class="shell r9-section-grid r9-section-grid-why">
+        <div class="r9-section-heading">
           <p class="section-kicker">02 / Why</p>
           <h2 id="why-title">Protection can be overtaken by the threat.</h2>
         </div>
-        <div class="prose prose-large">
+        <div class="prose prose-large why-intro">
           <p>Changes in how warfare observes, decides, coordinates and attacks can alter the protection problem while engineering commitments are already under way.</p>
-          <p>The challenge is not simply that threats evolve. Protective approaches can remain anchored to assumptions, categories or operating conditions that were reasonable when development began but no longer describe the problem that matters.</p>
-          <p>MILLARES keeps returning to that mismatch: what has changed, what protection is now required, and whether the engineering direction still fits.</p>
+          <p>Protective approaches can remain anchored to assumptions or operating conditions that were reasonable when development began but no longer describe the problem that matters.</p>
         </div>
       </div>
-      <div class="shell tempo-strip" aria-label="Changing protection context">
-        <article><span>Threat mechanisms change</span><p>Observation, coordination, attack methods and tactics can combine in new ways.</p></article>
-        <article><span>Conditions change</span><p>Mission, terrain, signatures, connectivity and constraints can alter what protection needs to achieve.</p></article>
-        <article><span>Engineering commits</span><p>Real decisions consume time and resources and become harder to reverse as development progresses.</p></article>
+
+      <div class="shell commit-lag" aria-label="Threat change and engineering commitment over time">
+        <div class="commit-lag-line" aria-hidden="true">
+          <span class="lag-node lag-node-1"></span>
+          <span class="lag-node lag-node-2"></span>
+          <span class="lag-break"></span>
+          <span class="lag-node lag-node-3 lag-node-commit"></span>
+        </div>
+        <article>
+          <span class="r9-micro">01 / Change</span>
+          <h3>Threat mechanisms change</h3>
+          <p>Observation, coordination, attack methods and tactics can combine in new ways.</p>
+        </article>
+        <article>
+          <span class="r9-micro">02 / Context</span>
+          <h3>Conditions change</h3>
+          <p>Mission, terrain, signatures, connectivity and constraints can alter what protection needs to achieve.</p>
+        </article>
+        <article class="commit-lag-commit">
+          <span class="r9-micro">03 / Commitment</span>
+          <h3>Engineering commits</h3>
+          <p>Real decisions consume time and resources and become harder to reverse as development progresses.</p>
+        </article>
       </div>
       <p class="shell pull-line">The response should follow the current problem, not the previous assumption.</p>
     </section>
 
     <section class="section-dark section-major" id="what" aria-labelledby="what-title">
-      <div class="shell split-intro">
-        <div>
+      <div class="shell r9-section-grid">
+        <div class="r9-section-heading">
           <p class="section-kicker">03 / What</p>
           <h2 id="what-title">From threat understanding to an engineered response.</h2>
         </div>
@@ -112,15 +185,26 @@
         </div>
       </div>
 
-      <div class="shell response-loop" aria-label="MILLARES path from threat to engineering">
-        <div class="loop-step"><b>01</b><span>Understand</span><small>What is the threat doing, and in what context?</small></div>
-        <div class="loop-step"><b>02</b><span>Explore</span><small>What materially different protective responses are credible?</small></div>
-        <div class="loop-step"><b>03</b><span>Challenge</span><small>Which assumptions, mechanisms and alternatives survive scrutiny?</small></div>
-        <div class="loop-step"><b>04</b><span>Engineer</span><small>Commit to the response that is justified.</small></div>
-        <div class="loop-step loop-return"><b>05</b><span>Reassess</span><small>Does the response still fit the threat?</small></div>
+      <div class="shell response-rail" aria-label="MILLARES path from threat understanding to engineering and reassessment">
+        <article class="response-node">
+          <b>01</b><span>Understand</span><small>What is the threat doing, and in what context?</small>
+        </article>
+        <article class="response-node">
+          <b>02</b><span>Explore</span><small>What materially different protective responses are credible?</small>
+        </article>
+        <article class="response-node">
+          <b>03</b><span>Challenge</span><small>Which assumptions, mechanisms and alternatives survive scrutiny?</small>
+        </article>
+        <article class="response-node response-node-engineer">
+          <b>04</b><span>Engineer</span><small>Commit to the response that is justified.</small>
+        </article>
+        <article class="response-node response-node-return">
+          <b>05</b><span>Reassess</span><small>Does the response still fit the threat?</small>
+        </article>
+        <div class="response-return" aria-hidden="true"><span>↺</span></div>
       </div>
 
-      <div class="shell engineering-destination">
+      <div class="shell r9-engineering-climax">
         <div>
           <p class="section-kicker">Engineering destination</p>
           <h3>Analysis is not the destination. Engineering is.</h3>
@@ -131,14 +215,14 @@
         </div>
       </div>
 
-      <div class="scope-rail shell" aria-label="Protection scope">
+      <div class="scope-cells shell" aria-label="Protection scope">
         <span>People</span><span>Platforms</span><span>Assets</span><span>Infrastructure</span>
       </div>
     </section>
 
     <section class="section-light section-major" id="approach" aria-labelledby="approach-title">
-      <div class="shell split-intro">
-        <div>
+      <div class="shell r9-section-grid">
+        <div class="r9-section-heading">
           <p class="section-kicker">04 / How we work</p>
           <h2 id="approach-title">Start with what can defeat the protection.</h2>
         </div>
@@ -148,32 +232,35 @@
         </div>
       </div>
 
-      <div class="shell evidence-grid">
+      <div class="shell evidence-rail" aria-label="Observe, challenge and test">
         <article>
-          <span class="evidence-label">Observe</span>
-          <h3>Let new evidence change the question.</h3>
-          <p>Operational observations and empirical evidence can force us to reconsider what the protection problem actually is, not just tune a preferred answer.</p>
+          <span class="r9-micro">Observe</span>
+          <p>Let new evidence change the question.</p>
         </article>
         <article>
-          <span class="evidence-label">Challenge</span>
-          <h3>Use models as tools, not as reality.</h3>
-          <p>Analysis, simulation and AI-assisted work can expose weak assumptions, compare alternatives and generate questions. Agreement between models is not evidence of physical effectiveness.</p>
+          <span class="r9-micro">Challenge</span>
+          <p>Use models to expose weak assumptions and compare meaningful alternatives.</p>
         </article>
         <article>
-          <span class="evidence-label">Test</span>
-          <h3>Run work that can change the engineering decision.</h3>
-          <p>Experiments and trials matter most when their outcomes can discriminate between meaningful alternatives, reject a weak direction or justify commitment.</p>
+          <span class="r9-micro">Test</span>
+          <p>Run work that can reject a weak direction or justify commitment.</p>
         </article>
       </div>
 
-      <div class="shell open-questions" aria-labelledby="snapshot-title">
-        <p class="section-kicker">Discovery snapshot · working and bounded</p>
-        <h3 id="snapshot-title">30 representative challenge cases across 12 mission-phase families.</h3>
-        <p>A recent internal review used a bounded set of 30 representative mission-phase challenge cases across 12 families to stress-test the working threat model and expose where required information was already represented, only partial, ambiguous or missing.</p>
-        <p><strong>These are discovery observations about the model, not measures of protective performance or completeness in an open-ended threat space.</strong></p>
+      <div class="shell evidence-frame" aria-labelledby="snapshot-title">
+        <div class="evidence-frame-head">
+          <p class="section-kicker">Discovery snapshot · working and bounded</p>
+          <h3 id="snapshot-title">Evidence from a bounded model review</h3>
+        </div>
+        <div class="evidence-statements">
+          <p><strong>30</strong><span>representative challenge cases</span></p>
+          <p><strong>12</strong><span>mission-phase families</span></p>
+          <p class="evidence-qualifier"><span>Working discovery/model observations — not protective-performance or completeness metrics.</span></p>
+        </div>
+        <p class="evidence-context">The review used the bounded case set to stress-test the working threat model and expose where required information was already represented, only partial, ambiguous or missing.</p>
       </div>
 
-      <div class="shell repeat-panel">
+      <div class="shell r9-reassess-panel">
         <div class="repeat-mark" aria-hidden="true">R</div>
         <div>
           <p class="section-kicker">Why repeat?</p>
@@ -183,21 +270,16 @@
         </div>
       </div>
 
-      <div class="shell engineering-destination">
-        <div>
-          <p class="section-kicker">Working with others</p>
-          <h3>The problem determines the expertise.</h3>
-        </div>
-        <div class="prose">
-          <p>As work develops, MILLARES may need operational, scientific, engineering, industrial, manufacturing, integration, test or other specialist capability. We seek the expertise the problem justifies rather than treating partnership as an end in itself.</p>
-          <p>External expertise does not replace evidence or accountable engineering judgement, and this site does not imply named partnerships that have not been publicly established.</p>
-        </div>
+      <div class="shell collaboration-transition">
+        <span class="r9-micro">Working with others</span>
+        <p>The problem determines the expertise. MILLARES may seek operational, scientific, engineering, industrial, manufacturing, integration, test or other specialist capability as the work justifies it — without treating partnership as an end in itself or implying relationships that have not been publicly established.</p>
       </div>
     </section>
 
     <section class="section-copper section-major" id="work" aria-labelledby="work-title">
       <div class="shell work-grid">
         <div>
+          <p class="work-doctrine">Threat → Response → Repeat</p>
           <p class="section-kicker">Work with us</p>
           <h2 id="work-title">The threat is moving. The work should move with it.</h2>
         </div>
@@ -211,12 +293,17 @@
   </main>
 
   <footer class="site-footer">
-    <div class="shell footer-grid">
+    <div class="shell footer-primary">
       <div><a class="wordmark footer-wordmark" href="#top">MILLARES</a><p>Start with the threat. Engineer the response. Repeat.</p></div>
-      <div><p>Defence research &amp; engineering</p><p>People · Platforms · Assets · Infrastructure</p></div>
-      <div><a href="mailto:franciscoj_fernandez@icloud.com?subject=MILLARES%20enquiry">Contact</a><p>No analytics or tracking cookies.</p></div>
+      <div><a href="mailto:franciscoj_fernandez@icloud.com?subject=MILLARES%20enquiry">Contact</a><p>Defence research &amp; engineering</p></div>
     </div>
-    <div class="shell footer-base"><span>© 2026 MILLARES</span><span>Public house website · Working practice under development</span></div>
+    <div class="shell footer-status">
+      <span class="r9-micro">Status</span>
+      <p>Public house website · Working practice under development</p>
+      <p>People · Platforms · Assets · Infrastructure</p>
+      <p>No analytics or tracking cookies.</p>
+      <p>© 2026 MILLARES</p>
+    </div>
   </footer>
 </body>
 </html>
