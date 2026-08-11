@@ -1,13 +1,7 @@
 (() => {
-  // R8 is a reversible working candidate layered over the production stylesheet.
-  // Keep the overrides isolated until the refinement is accepted or rejected.
-  if (!document.querySelector('link[data-millares-r8]')) {
-    const r8Sheet = document.createElement('link');
-    r8Sheet.rel = 'stylesheet';
-    r8Sheet.href = 'r8.css?v=20260811-1';
-    r8Sheet.dataset.millaresR8 = 'true';
-    document.head.appendChild(r8Sheet);
-  }
+  // MILLARES R9 reversible prototype.
+  // TRT geometry is fixed editorial structure: this script must never generate,
+  // detect, track or change semantic threat/response topology.
 
   const menuButton = document.querySelector('.menu-toggle');
   const nav = document.querySelector('.primary-nav');
@@ -36,67 +30,62 @@
     });
   }
 
-  const field = document.querySelector('.evolving-field');
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Ordinary document/navigation state only. This updates the same section state
+  // already represented by the navigation; it is not system status or telemetry.
+  const indexedSections = ['about', 'why', 'what', 'approach', 'work'];
+  const indexMarks = new Map(
+    [...document.querySelectorAll('[data-index-section]')].map((node) => [node.dataset.indexSection, node])
+  );
+  const navLinks = new Map(
+    [...document.querySelectorAll('.primary-nav a[href^="#"]')].map((link) => [link.getAttribute('href').slice(1), link])
+  );
 
-  if (field) {
-    const renderField = () => {
-      field.replaceChildren();
-      const width = field.clientWidth || window.innerWidth * 0.55;
-      const height = field.clientHeight || window.innerHeight;
-      const compact = window.innerWidth < 760;
-      const cols = compact ? 10 : 15;
-      const rows = compact ? 10 : 12;
-      const cx = compact ? 72 : 58;
-      const cy = 55;
+  const setCurrentSection = (id) => {
+    indexedSections.forEach((sectionId) => {
+      indexMarks.get(sectionId)?.classList.toggle('is-current', sectionId === id);
+      const link = navLinks.get(sectionId);
+      if (!link) return;
+      if (sectionId === id) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+  };
 
-      for (let row = 0; row < rows; row += 1) {
-        for (let col = 0; col < cols; col += 1) {
-          const x = 4 + (col / Math.max(1, cols - 1)) * 92;
-          const y = 4 + (row / Math.max(1, rows - 1)) * 92;
-          const dx = x - cx;
-          const dy = y - cy;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          const angle = Math.atan2(dy, dx) * 180 / Math.PI + 92 + dist * 0.78;
-          const falloff = Math.max(0.12, 1 - dist / 82);
-          const ripple = 0.76 + 0.34 * Math.sin((row + col) * 0.72);
+  if ('IntersectionObserver' in window) {
+    const sectionObserver = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+      if (visible[0]?.target?.id) setCurrentSection(visible[0].target.id);
+    }, {
+      threshold: [0.18, 0.35, 0.55],
+      rootMargin: '-18% 0px -58% 0px'
+    });
 
-          const unit = document.createElement('span');
-          unit.className = 'field-unit';
-          unit.style.setProperty('--x', `${x.toFixed(2)}%`);
-          unit.style.setProperty('--y', `${y.toFixed(2)}%`);
-          unit.style.setProperty('--r', `${angle.toFixed(2)}deg`);
-          unit.style.setProperty('--s', `${(0.58 + falloff * 0.78).toFixed(2)}`);
-          unit.style.setProperty('--o', `${Math.min(0.78, 0.16 + falloff * 0.62 * ripple).toFixed(2)}`);
-          unit.style.setProperty('--d', `${(-((row * cols + col) % 23) * 0.17).toFixed(2)}s`);
-          field.appendChild(unit);
-        }
-      }
-
-      field.dataset.geometry = `${Math.round(width)}x${Math.round(height)}`;
-    };
-
-    renderField();
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-      window.clearTimeout(resizeTimer);
-      resizeTimer = window.setTimeout(renderField, 160);
+    indexedSections.forEach((id) => {
+      const section = document.getElementById(id);
+      if (section) sectionObserver.observe(section);
     });
   }
 
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // General editorial content reveal only. The fixed TRT topology itself is never
+  // generated or semantically changed by scroll position.
   if (!reduceMotion && 'IntersectionObserver' in window) {
-    const targets = document.querySelectorAll('.split-intro, .tempo-strip, .response-loop, .engineering-destination, .repeat-panel, .section-heading-wide, .protection-grid, .evidence-grid, .open-questions, .about-grid, .principles, .work-grid');
+    const targets = document.querySelectorAll(
+      '.r9-section-grid, .constraint-stack, .commit-lag, .response-rail, .r9-engineering-climax, .scope-cells, .evidence-rail, .evidence-frame, .r9-reassess-panel, .collaboration-transition, .work-grid'
+    );
     targets.forEach((target) => target.classList.add('reveal'));
 
-    const observer = new IntersectionObserver((entries, obs) => {
+    const revealObserver = new IntersectionObserver((entries, obs) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
           obs.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
 
-    targets.forEach((target) => observer.observe(target));
+    targets.forEach((target) => revealObserver.observe(target));
   }
 })();
