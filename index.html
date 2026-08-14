@@ -166,63 +166,67 @@
       <div class="shell split-intro">
         <div>
           <p class="section-kicker">04 / What we are developing</p>
-          <h2 id="capabilities-title">Protective capabilities for threats that adapt.</h2>
+          <h2 id="capabilities-title">Protective engineering for contested, adaptive threats.</h2>
         </div>
         <div class="prose prose-large">
-          <p>MILLARES is developing protective capabilities from the problem outward rather than starting from a fixed product architecture. Our current work is especially concerned with low-cost unmanned threats, degraded or deceptive information, compressed warning time, repeated and distributed attack, and adversaries that adapt faster than conventional protection cycles.</p>
-          <p><strong>Counter-UAS is an immediate priority application, not the full boundary of the work.</strong></p>
-          <p>These are research and development directions, not fielded products. No operational-effectiveness claim is made.</p>
+          <p>MILLARES is focused on a small number of bounded problems: keeping warning usable when evidence is degraded or contradictory; reducing exposure and observability; making deception measurable rather than assumed; and connecting heterogeneous warning and response components through bounded, human-authorised interfaces.</p>
+          <p>We are not presenting a fixed product architecture. The first outputs we intend to build and test are concrete engineering objects — interface contracts, adapters, local warning modules, replay and test harnesses, and measurement protocols.</p>
+          <p><strong>Counter-UAS is a priority application and test bed, not a claim to own a complete stack.</strong></p>
+          <p><strong>Early-stage R&amp;D.</strong> Candidate capability directions and experiments; not fielded products and not operational-effectiveness claims.</p>
         </div>
       </div>
 
-      <div class="shell evidence-grid" aria-label="MILLARES protective response development areas">
+      <div class="shell evidence-grid" aria-label="MILLARES protective engineering directions">
         <article>
-          <span class="evidence-label">01 / Awareness</span>
-          <h3>See enough. Trust enough. Act in time.</h3>
-          <p>We are exploring heterogeneous sensing, fusion, confidence handling and warning functions for incomplete, degraded or contradictory information.</p>
-          <p><strong>Partners:</strong> sensing, AI/data fusion, communications, HMI and operational test.</p>
+          <span class="evidence-label">01 / Trusted warning</span>
+          <h3>Keep warning usable when the picture is uncertain.</h3>
+          <p>We are developing and testing warning functions for incomplete, contradictory, stale or manipulated observations, with uncertainty and provenance exposed rather than hidden.</p>
+          <p><strong>Objects:</strong> data/interface adapters, local warning modules, degraded-input replay and test harnesses.</p>
+          <p><strong>Partners:</strong> sensing/data, communications, HMI, operational users and test organisations.</p>
         </article>
         <article>
           <span class="evidence-label">02 / Observability</span>
-          <h3>Make the protected harder to find and follow.</h3>
-          <p>We are exploring signature, emission, exposure and multispectral observability management across the sensing modalities that shape detection and targeting.</p>
-          <p><strong>Partners:</strong> EO/IR/RF, signatures, materials, platforms and measurement.</p>
+          <h3>Reduce what the adversary can reliably see and follow.</h3>
+          <p>We are exploring bounded ways to reduce exposure and observability through position, timing, emission discipline and partner-provided passive measures, measured against a defined baseline.</p>
+          <p><strong>Objects:</strong> exposure-management tools, protective-state software, integration interfaces and measurement data products.</p>
+          <p><strong>Partners:</strong> observability/signature specialists, platform teams, instrumentation and operational users.</p>
         </article>
         <article>
           <span class="evidence-label">03 / Deception</span>
-          <h3>Make the adversary less certain about what it sees.</h3>
-          <p>We are exploring decoys, controlled ambiguity and adaptive deception intended to challenge observation, classification and targeting logic.</p>
-          <p><strong>Partners:</strong> signature generation, autonomy/software, modelling and operational validation.</p>
+          <h3>Make deception something we can test, not assume.</h3>
+          <p>We are exploring controlled ambiguity and deception together with the instrumentation and measurement needed to determine whether they actually change observation, classification, tracking or resource allocation.</p>
+          <p><strong>Objects:</strong> deception-control logic, partner-integrated elements, replay tools, measurement protocols and effect-assessment records.</p>
+          <p><strong>Partners:</strong> deception/signature specialists, modelling, instrumentation, threat representation and operational validation.</p>
         </article>
         <article>
-          <span class="evidence-label">04 / Counter-UAS</span>
-          <h3>Connect warning to response without assuming one effector.</h3>
-          <p>We are exploring interoperable counter-UAS integration across sensing, warning, decision support, non-kinetic interruption and interceptor/effector interfaces, with human authority and fallback preserved.</p>
-          <p><strong>Partners:</strong> C-UAS developers, sensors, interceptors/effectors, C2, autonomy, safety and verification.</p>
-        </article>
-        <article>
-          <span class="evidence-label">05 / Survivability</span>
-          <h3>Preserve options when time and layers run out.</h3>
-          <p>We are exploring warning, local fallback and human-machine functions that can preserve actionable time and continuity when detection is late, communications degrade or earlier layers fail.</p>
-          <p><strong>Partners:</strong> operators, human factors, wearable/embedded, tactical communications and protection systems.</p>
-        </article>
-        <article>
-          <span class="evidence-label">06 / Sustained protection</span>
-          <h3>Keep protection useful after the first attack.</h3>
-          <p>We are exploring distributed coordination, resource awareness, reconfiguration and evidence-driven update mechanisms for repeated pressure, adversary adaptation and constrained replenishment.</p>
-          <p><strong>Partners:</strong> distributed systems, sustainment, simulation, systems integration and operational test.</p>
+          <span class="evidence-label">04 / Interoperability</span>
+          <h3>Connect existing warning and response components without pretending to own the whole stack.</h3>
+          <p>We are defining bounded interfaces and decision hand-offs between heterogeneous sensing, warning, decision and existing response components, while keeping explicit human authority over any weapon-release decision.</p>
+          <p><strong>Objects:</strong> interface contracts, adapter modules, local decision-support functions, conformance/replay harnesses and human-authority traces.</p>
+          <p><strong>Partners:</strong> C-UAS and other component developers, C2/integration, sensing/warning, safety/verification and Ukrainian operational/test routes.</p>
         </article>
       </div>
 
-      <div class="shell tempo-strip" aria-label="How MILLARES development may become engineering">
-        <article><span>Possible forms</span><p>Software, sensing and decision-support modules, distributed protective nodes, platform adaptations and integration kits.</p></article>
-        <article><span>Integration &amp; services</span><p>Interoperable interfaces, test and evidence services, digital replay, procedures, training and combinations of these.</p></article>
-        <article><span>Convergence rule</span><p>The final form remains open until evidence is strong enough to justify commitment.</p></article>
+      <div class="shell tempo-strip" aria-label="How MILLARES makes development testable">
+        <article><span>Buildable objects</span><p>Interface contracts, adapters, local warning and decision modules, replay/test harnesses and measurement protocols.</p></article>
+        <article><span>Evidence objects</span><p>Defined baselines, degraded cases, trial records, explicit uncertainty, falsifiers and negative or no-effect results.</p></article>
+        <article><span>Convergence rule</span><p>A direction narrows, changes or stops when access, evidence or redundancy shows that another answer is better.</p></article>
       </div>
 
-      <p class="shell pull-line">We are looking for partners to build and test this with us.</p>
+      <div class="shell engineering-destination">
+        <div>
+          <p class="section-kicker">Protective continuity</p>
+          <h3>Test beyond the first successful event.</h3>
+        </div>
+        <div class="prose">
+          <p>When a bounded capability becomes real enough to test, we challenge it against repeated demand, degraded communications, node or link loss, common-mode failure, constrained resources, configuration change and recovery.</p>
+          <p>Continuity is a stress condition on the work above, not a claim that MILLARES already operates a mature orchestration platform.</p>
+        </div>
+      </div>
+
+      <p class="shell pull-line">Bring a real protection problem, component or test route. We will define the smallest experiment that can show whether working together adds value.</p>
       <div class="shell hero-actions">
-        <a class="button button-primary" href="#work">Discuss a development problem</a>
+        <a class="button button-primary" href="#work">Discuss a bounded experiment</a>
       </div>
     </section>
 
@@ -292,11 +296,12 @@
       <div class="shell work-grid">
         <div>
           <p class="section-kicker">07 / Work with us</p>
-          <h2 id="work-title">The threat is moving. The work should move with it.</h2>
+          <h2 id="work-title">Bring a real problem. Build the smallest useful experiment.</h2>
         </div>
         <div class="prose prose-large">
-          <p>We are particularly interested in Ukrainian and European partners who can help turn selected protective-capability directions into bounded development and validation work — starting with counter-UAS, degraded warning, survivability, deception, integration and sustained protection under adaptive battlefield conditions.</p>
-          <p>That can include operational insight, scientific and technical expertise, existing sensors or effectors, modelling and simulation, materials, platforms, integration, experimentation, test capability and independent challenge.</p>
+          <p>We are looking for Ukrainian and European partners who can bring current operational problems, existing technologies worth integrating or challenging, specialist measurement capability, test access or field feedback.</p>
+          <p>Current validate-first collaboration tracks include degraded warning/interoperability and measurable observability/deception. Which one leads will be decided by operational relevance, partner access, non-redundancy and the shortest path to falsifiable evidence.</p>
+          <p>Sensors, effectors, specialist technologies, platforms and test infrastructure may be partner-provided. We do not need to own every component to contribute useful engineering — and we will not invent a role when an existing solution already closes the gap.</p>
           <a class="button button-dark" href="mailto:franciscoj_fernandez@icloud.com?subject=MILLARES%20collaboration">Start a conversation</a>
         </div>
       </div>
