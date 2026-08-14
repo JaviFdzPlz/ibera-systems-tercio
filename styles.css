@@ -528,6 +528,7 @@ h3 {
   .button { width: 100%; }
   .scope-rail { grid-template-columns: 1fr 1fr; }
   .scope-rail span { font-size: 10px; }
+  .section-heading-wide h2 { font-size: 40px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
